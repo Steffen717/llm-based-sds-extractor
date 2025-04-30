@@ -37,5 +37,5 @@ Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
 
 ### Beispielaufruf zur Verarbeitung von PDFs
 
-- **Öffne die Datei `main.py` und passe die Pfade zu deinem Eingabe-, Ausgabe- und Fehlerordner an.
-- **Nach der Anpassung der Pfade kannst du das Skript ausführen:
+1.Öffne die Datei `main.py` und passe die Pfade zu deinem Eingabe-, Ausgabe- und Fehlerordner an.
+2.Nach der Anpassung der Pfade kannst du das Skript ausführen:
