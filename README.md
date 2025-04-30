@@ -5,7 +5,7 @@ Ein **LLM-unterstütztes Extraktionswerkzeug**, das Sicherheitsdatenblätter (SD
 ## Funktionen
 
 - **PDF-Extraktion**: Extrahiert die Abschnitte 3 (Angaben zu Bestandteilen), 11 (Toxikologische Angaben) und 12 (Umweltbezogene Angaben) aus SDS-PDF-Dateien.
-- **LLM-Analyse**: Verwendet **OpenAI API**, um relevante Informationen aus den extrahierten Abschnitten zu analysieren und zu extrahieren.
+- **LLM-Analyse**: Verwendet **OpenAI API**, um relevante Informationen aus den extrahierten Abschnitten zu extrahieren.
 - **Fehlerbehandlung**: PDFs, bei denen die Extraktion fehlschlägt, werden in einen Fehlerordner verschoben.
 - **Kombinierte JSON-Ausgabe**: Die extrahierten und analysierten Daten werden in strukturierte JSON-Dateien umgewandelt und in einer finalen JSON-Datei zusammengeführt.
 - **Batch-Verarbeitung**: Verarbeitet mehrere PDFs gleichzeitig aus einem Ordner und speichert die Ergebnisse in separaten Unterordnern.
