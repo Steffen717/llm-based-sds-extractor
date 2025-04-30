@@ -9,6 +9,7 @@ Ein **LLM-unterstütztes Extraktionswerkzeug**, das Sicherheitsdatenblätter (SD
 - **Fehlerbehandlung**: PDFs, bei denen die Extraktion fehlschlägt, werden in einen Fehlerordner verschoben.
 - **Kombinierte JSON-Ausgabe**: Die extrahierten und analysierten Daten werden in strukturierte JSON-Dateien umgewandelt und in einer finalen JSON-Datei zusammengeführt.
 - **Batch-Verarbeitung**: Verarbeitet mehrere PDFs gleichzeitig aus einem Ordner und speichert die Ergebnisse in separaten Unterordnern.
+- **Individuelle Ordnerstruktur: Für jedes PDF wird ein separater Ordner erstellt, in dem die extrahierten Abschnitte als separate JSON-Dateien sowie die finale zusammengeführte JSON-Datei gespeichert werden.
 
 ## Voraussetzungen
 
@@ -28,10 +29,13 @@ Um das LLM-based SDS Extractor mit OpenAI GPT zu nutzen, musst du einen OpenAI A
 
 Schritte:
 Erstelle eine Datei mit dem Namen .env im Hauptverzeichnis des Projekts (dort, wo sich auch die README.md und andere Projektdateien befinden).
-
-Füge deinen OpenAI API-Schlüssel hinzu
 Öffne die .env-Datei und füge deinen OpenAI API-Schlüssel im folgenden Format hinzu:
 ```bash
 OPENAI_API_KEY=dein_api_schluessel
 ```
 Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
+
+### Beispielaufruf zur Verarbeitung von PDFs
+
+- **Öffne die Datei `main.py` und passe die Pfade zu deinem Eingabe-, Ausgabe- und Fehlerordner an.
+- **Nach der Anpassung der Pfade kannst du das Skript ausführen:
