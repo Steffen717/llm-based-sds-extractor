@@ -28,7 +28,7 @@ def create_empty_json(path):
     with open(path, 'w') as f:
         json.dump({}, f)
 
-def extract_between_words_from_folder(input_folder, output_folder, failed_folder):
+def extract_sections_from_folder(input_folder, output_folder, failed_folder):
     os.makedirs(output_folder, exist_ok=True)
     os.makedirs(failed_folder, exist_ok=True)
 
@@ -112,4 +112,4 @@ input_folder = r"C:\Users\Steffen Kades\Desktop\eingabe"
 output_folder = r"C:\Users\Steffen Kades\Desktop\result"
 failed_folder = r"C:\Users\Steffen Kades\Desktop\fail"
 
-extract_between_words_from_folder(input_folder, output_folder, failed_folder)
+extract_sections_from_folder(input_folder, output_folder, failed_folder)
