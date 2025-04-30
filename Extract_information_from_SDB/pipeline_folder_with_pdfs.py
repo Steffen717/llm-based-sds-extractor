@@ -19,7 +19,7 @@ import os
 import json
 import shutil
 from split_pdfs_and_save import extract_between_words
-from Extract_Infromation_from_part_3 import analyze_safety_data_sheet3
+from Extract_information_from_SDB.Extract_Infromation_from_part_03 import analyze_safety_data_sheet3
 from Extract_Infromation_from_part_11 import analyze_safety_data_sheet11
 from Extract_Infromation_from_part_12 import analyze_safety_data_sheet12
 from multiple_JSON_to_one import process_json_data
