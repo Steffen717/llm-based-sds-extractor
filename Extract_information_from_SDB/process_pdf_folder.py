@@ -19,10 +19,12 @@ import os
 import json
 import shutil
 from split_pdfs_and_save import extract_between_words
-from Extract_information_from_SDB.extract_information_part_03 import analyze_safety_data_sheet3
-from Extract_information_from_SDB.extract_information_part_11 import analyze_safety_data_sheet11
-from Extract_information_from_SDB.extract_information_part_12 import analyze_safety_data_sheet12
-from Extract_information_from_SDB.process_and_merge_jsons import process_json_data
+from combine_pdf import merge_pdfs
+from extract_information_part_03 import analyze_safety_data_sheet3
+from extract_information_part_11 import analyze_safety_data_sheet11
+from extract_information_part_12 import analyze_safety_data_sheet12
+from process_and_merge_jsons import process_json_data
+from JSON_to_excel import json_to_excel
 
 def create_empty_json(path):
     with open(path, 'w') as f:
@@ -97,6 +99,20 @@ def extract_sections_from_folder(input_folder, output_folder, failed_folder):
             print(f"Fehler bei Abschnitt 12 in {file_name}: {e}")
             jsonpath12 = os.path.join(pdf_output_folder, f"{base_name}_result12.json")
             create_empty_json(jsonpath12)
+            
+        try:
+            merged_pdf_path = os.path.join(pdf_output_folder, f"dokument.pdf")
+            merge_pdfs(
+                [
+                    success3,
+                    success11,
+                    success12
+                ],
+                merged_pdf_path
+            )
+            print(f"PDFs zusammengeführt: {merged_pdf_path}")
+        except Exception as e:
+            print(f"Fehler beim Zusammenführen der PDFs: {e}")
 
         # JSON-Dateien kombinieren
         final_json = os.path.join(pdf_output_folder, f"{base_name}_final.json")
@@ -106,3 +122,13 @@ def extract_sections_from_folder(input_folder, output_folder, failed_folder):
         except Exception as e:
             print(f"Fehler beim Kombinieren: {e}")
             create_empty_json(final_json)
+            
+        excel_output_path = os.path.join(pdf_output_folder, f"Tabelle.xlsx")
+        if os.path.exists(final_json):
+            try:
+                json_to_excel(final_json, excel_output_path)
+                print(f"Excel erfolgreich erstellt: {excel_output_path}")
+            except Exception as e:
+                print(f"Fehler bei der Erstellung der Excel-Datei aus {final_json}: {e}")
+        else:
+            print(f"Keine finale JSON-Datei gefunden für: {base_name}")

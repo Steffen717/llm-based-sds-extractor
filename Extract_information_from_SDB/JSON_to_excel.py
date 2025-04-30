@@ -6,7 +6,7 @@ from openpyxl.styles import Alignment
 import re
 
 # Diese Funktion konvertiert eine JSON-Datei in eine Excel-Tabelle
-def json_to_excel_v1(input_file, output_file):
+def json_to_excel(input_file, output_file):
     # Schutz gegen Excel-Formeln
     def escape_excel_formula(val):
         if isinstance(val, str):
@@ -152,8 +152,3 @@ def json_to_excel_v1(input_file, output_file):
         # Zeilenhöhe automatisch anpassen (AutoFit simulieren)
         for row_index in worksheet.iter_rows():
             worksheet.row_dimensions[row_index[0].row].height = None
-
-# Beispielaufruf
-input_file = r"C:\Users\Steffen Kades\Desktop\reste code\final.json"
-output_file = r"C:\Users\Steffen Kades\Desktop\daten\paar37\Tabelle.xlsx"
-json_to_excel_v1(input_file, output_file)
