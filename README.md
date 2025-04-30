@@ -9,7 +9,7 @@ Ein **LLM-unterstütztes Extraktionswerkzeug**, das Sicherheitsdatenblätter (SD
 - **Fehlerbehandlung**: PDFs, bei denen die Extraktion fehlschlägt, werden in einen Fehlerordner verschoben.
 - **Kombinierte JSON-Ausgabe**: Die extrahierten und analysierten Daten werden in strukturierte JSON-Dateien umgewandelt und in einer finalen JSON-Datei zusammengeführt.
 - **Batch-Verarbeitung**: Verarbeitet mehrere PDFs gleichzeitig aus einem Ordner und speichert die Ergebnisse in separaten Unterordnern.
-- Individuelle Ordnerstruktur: Für jedes PDF wird ein separater Ordner erstellt, in dem die extrahierten Abschnitte als separate JSON-Dateien sowie die finale zusammengeführte JSON-Datei gespeichert werden.
+- ""Individuelle Ordnerstruktur"": Für jedes PDF wird ein separater Ordner erstellt, in dem die extrahierten Abschnitte als separate JSON-Dateien sowie die finale zusammengeführte JSON-Datei gespeichert werden.
 
 ## Voraussetzungen
 
