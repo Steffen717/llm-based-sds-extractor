@@ -1,11 +1,11 @@
 # LLM-based SDS Extractor
 
-Ein **LLM-unterstütztes Extraktionswerkzeug**, das Sicherheitsdatenblätter (SDS) im PDF-Format verarbeitet, spezifische Abschnitte extrahiert und die Daten in strukturierte JSON-Dateien umwandelt. Es nutzt **OpenAI GPT** zur Extraktion von Informationen aus den Abschnitten 3, 11 und 12 eines Sicherheitsdatenblatts.
+Ein **LLM-unterstütztes Extraktionswerkzeug**, das Sicherheitsdatenblätter (SDS) im PDF-Format verarbeitet, spezifische Abschnitte extrahiert und die Daten in strukturierte JSON-Dateien umwandelt. Es nutzt **OpenAI API** zur Extraktion von Informationen aus den Abschnitten 3, 11 und 12 eines Sicherheitsdatenblatts.
 
 ## Funktionen
 
 - **PDF-Extraktion**: Extrahiert die Abschnitte 3 (Angaben zu Bestandteilen), 11 (Toxikologische Angaben) und 12 (Umweltbezogene Angaben) aus SDS-PDF-Dateien.
-- **LLM-Analyse**: Verwendet **OpenAI GPT**, um relevante Informationen aus den extrahierten Abschnitten zu analysieren und zu extrahieren.
+- **LLM-Analyse**: Verwendet **OpenAI API**, um relevante Informationen aus den extrahierten Abschnitten zu analysieren und zu extrahieren.
 - **Fehlerbehandlung**: PDFs, bei denen die Extraktion fehlschlägt, werden in einen Fehlerordner verschoben.
 - **Kombinierte JSON-Ausgabe**: Die extrahierten und analysierten Daten werden in strukturierte JSON-Dateien umgewandelt und in einer finalen JSON-Datei zusammengeführt.
 - **Batch-Verarbeitung**: Verarbeitet mehrere PDFs gleichzeitig aus einem Ordner und speichert die Ergebnisse in separaten Unterordnern.
@@ -25,7 +25,7 @@ Installiere alle benötigten Python-Pakete:
 pip install -r requirements.txt
 ```
 OpenAI API-Schlüssel einrichten
-Um das LLM-based SDS Extractor mit OpenAI GPT zu nutzen, musst du einen OpenAI API-Schlüssel hinzufügen. Dieser Schlüssel wird benötigt, um die Daten aus den PDF-Dokumenten zu extrahieren.
+Um das LLM-based SDS Extractor mit OpenAI API zu nutzen, musst du einen OpenAI API-Schlüssel hinzufügen. Dieser Schlüssel wird benötigt, um die Daten aus den PDF-Dokumenten zu extrahieren.
 
 Schritte:
 Erstelle eine Datei mit dem Namen .env im Hauptverzeichnis des Projekts (dort, wo sich auch die README.md und andere Projektdateien befinden).
