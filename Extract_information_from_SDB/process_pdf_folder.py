@@ -4,14 +4,14 @@ Dieses Skript verarbeitet Sicherheitsdatenblätter im PDF-Format:
 1. Extrahiert die Abschnitte (3, 11, 12) aus jeder PDF in einem Ordner, 
    die zwischen definierten Wortpaaren liegen. Falls diese keine Ergebnisse liefern, 
    werden alternative Fallback-Wörter aus den Listen ausprobiert.
-2. Analysiert die extrahierten Teile mit jeweils zugeschnittenen GPT-Anfragen.
-3. Speichert die Ergebnisse als strukturierte JSON-Dateien.
-4. Führt die Einzelinformationen zu einer finalen JSON-Datei zusammen.
-5. PDFs mit fehlgeschlagenen Extraktionen werden in einen Fehlerordner verschoben.
-6. Für jede PDF wird im Ausgabeordner ein eigener Unterordner erstellt, 
+2. Erstellt ein pdf dokument welches alle extrahierten Abschnitte enthält.
+3. Analysiert die extrahierten Teile mit jeweils zugeschnittenen GPT-Anfragen.
+4. Speichert die Ergebnisse als strukturierte JSON-Dateien.
+5. Führt die Einzelinformationen zu einer finalen JSON-Datei zusammen.
+6. PDFs mit fehlgeschlagenen Extraktionen werden in einen Fehlerordner verschoben.
+7. Für jede PDF wird im Ausgabeordner ein eigener Unterordner erstellt, 
    der alle zugehörigen extrahierten PDF-Dateien und JSON-Ergebnisse enthält.
-
-Pfadangaben für Eingabe-, Ausgabe- und Fehlerordner sind am Ende des Skripts konfiguriert.
+8. Konvertiert die finale JSON-Datei in eine Excel-Tabelle.
 """
 
 
