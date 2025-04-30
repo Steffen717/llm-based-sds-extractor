@@ -46,8 +46,7 @@ Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
       - JSON-Dateien mit den analysierten Daten für jeden Abschnitt (z. B. `result3.json`, `result11.json`, `result12.json`).
       - Eine finale JSON-Datei, die alle Ergebnisse zusammenführt.
 
-    - **Fehlerordner**: Wenn bei der Extraktion oder Analyse einer PDF etwas schiefgeht, wird diese PDF in den Fehlerordner verschoben, damit du sie später überprüfen kannst. Das Skript fährt mit der Verarbeitung der anderen PDFs fort, auch wenn eine fehlschlägt. 
-      - Du kannst jedoch den Code so anpassen, dass das Skript sofort abbricht, falls ein Fehler auftritt, anstatt fortzufahren und die fehlerhafte Datei nur zu verschieben.
+    - **Fehlerordner**: Wenn bei der Extraktion oder Analyse einer PDF ein Fehler auftritt, wird diese PDF in den Fehlerordner verschoben. Du kannst die fehlerhafte Datei später überprüfen. Das Skript setzt die Verarbeitung der anderen PDFs fort, auch wenn eine PDF fehlschlägt. Du kannst jedoch den Code so anpassen, dass das Skript sofort abbricht, wenn ein Fehler auftritt, anstatt fortzufahren und die fehlerhafte Datei nur zu verschieben.
 
 2. Nach der Anpassung der Pfade kannst du das Skript ausführen:
 
