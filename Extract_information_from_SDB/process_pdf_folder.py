@@ -106,10 +106,3 @@ def extract_sections_from_folder(input_folder, output_folder, failed_folder):
         except Exception as e:
             print(f"Fehler beim Kombinieren: {e}")
             create_empty_json(final_json)
-
-# Beispielaufruf
-input_folder = r"C:\Users\Steffen Kades\Desktop\eingabe"
-output_folder = r"C:\Users\Steffen Kades\Desktop\result"
-failed_folder = r"C:\Users\Steffen Kades\Desktop\fail"
-
-extract_sections_from_folder(input_folder, output_folder, failed_folder)
