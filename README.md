@@ -9,7 +9,7 @@ Ein **LLM-unterstütztes Extraktionswerkzeug**, das Sicherheitsdatenblätter (SD
 - **Fehlerbehandlung**: PDFs, bei denen die Extraktion fehlschlägt, werden in einen Fehlerordner verschoben.
 - **Kombinierte JSON-Ausgabe**: Die extrahierten und analysierten Daten werden in strukturierte JSON-Dateien umgewandelt und in einer finalen JSON-Datei zusammengeführt.
 - **Batch-Verarbeitung**: Verarbeitet mehrere PDFs gleichzeitig aus einem Ordner und speichert die Ergebnisse in separaten Unterordnern.
-- **Individuelle Ordnerstruktur: Für jedes PDF wird ein separater Ordner erstellt, in dem die extrahierten Abschnitte als separate JSON-Dateien sowie die finale zusammengeführte JSON-Datei gespeichert werden.
+- Individuelle Ordnerstruktur: Für jedes PDF wird ein separater Ordner erstellt, in dem die extrahierten Abschnitte als separate JSON-Dateien sowie die finale zusammengeführte JSON-Datei gespeichert werden.
 
 ## Voraussetzungen
 
@@ -43,8 +43,10 @@ Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
 
     - **Ausgabeordner**: Für jede verarbeitete PDF wird ein Unterordner erstellt, der den gleichen Namen wie die PDF trägt. In diesem Unterordner werden die extrahierten Daten in verschiedenen Formaten gespeichert:
       - Extrahierte PDFs der einzelnen Abschnitte (z. B. Abschnitt 3, Abschnitt 11, Abschnitt 12).
+      - Ein PDF mit den 3 Teilen kombiniert (dokument.pdf) welches dann im moment diesen namen benötigt für die Evaluationssoftware
       - JSON-Dateien mit den analysierten Daten für jeden Abschnitt (z. B. `result3.json`, `result11.json`, `result12.json`).
       - Eine finale JSON-Datei, die alle Ergebnisse zusammenführt.
+      - Die finale JSON-Datei wird in eine Excel-Datei umgewandelt und als „Tabelle.xlsx“ gespeichert, welche momentan diesen Namen benötigt, um vom Evaluationstool korrekt verarbeitet zu werden.deln.
 
     - **Fehlerordner**: Wenn bei der Extraktion oder Analyse einer PDF ein Fehler auftritt, wird diese PDF in den Fehlerordner verschoben. Du kannst die fehlerhafte Datei später überprüfen. Das Skript setzt die Verarbeitung der anderen PDFs fort, auch wenn eine PDF fehlschlägt. Du kannst jedoch den Code so anpassen, dass das Skript sofort abbricht, wenn ein Fehler auftritt, anstatt fortzufahren und die fehlerhafte Datei nur zu verschieben.
 
