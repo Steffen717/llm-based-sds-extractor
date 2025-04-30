@@ -8,7 +8,9 @@ __pycache__/
 # Virtual environment
 env/
 venv/
-.env
 
 # VS Code settings
 .vscode/
+
+# API key
+.env
