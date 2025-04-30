@@ -22,4 +22,16 @@ Installiere alle benötigten Python-Pakete:
 
 ```bash
 pip install -r requirements.txt
+```
+OpenAI API-Schlüssel einrichten
+Um das LLM-based SDS Extractor mit OpenAI GPT zu nutzen, musst du einen OpenAI API-Schlüssel hinzufügen. Dieser Schlüssel wird benötigt, um die Daten aus den PDF-Dokumenten zu extrahieren.
 
+Schritte:
+Erstelle eine Datei mit dem Namen .env im Hauptverzeichnis des Projekts (dort, wo sich auch die README.md und andere Projektdateien befinden).
+
+Füge deinen OpenAI API-Schlüssel hinzu
+Öffne die .env-Datei und füge deinen OpenAI API-Schlüssel im folgenden Format hinzu:
+```bash
+OPENAI_API_KEY=dein_api_schluessel
+```
+Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
