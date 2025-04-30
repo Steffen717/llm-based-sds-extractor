@@ -35,7 +35,21 @@ OPENAI_API_KEY=dein_api_schluessel
 ```
 Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
 
-### Beispielaufruf zur Verarbeitung von PDFs
+### Anleitung zum Nutzen des Scripts
 
-1.Öffne die Datei `main.py` und passe die Pfade zu deinem Eingabe-, Ausgabe- und Fehlerordner an.
-2.Nach der Anpassung der Pfade kannst du das Skript ausführen:
+1. Öffne die Datei `main.py` und passe die Pfade zu deinem Eingabe-, Ausgabe- und Fehlerordner an.  
+
+    - **Eingabeordner**: Dieser Ordner sollte die PDF-Dateien enthalten, die du verarbeiten möchtest. Das Skript wird jede PDF in diesem Ordner durchgehen und die relevanten Abschnitte extrahieren.
+
+    - **Ausgabeordner**: Für jede verarbeitete PDF wird ein Unterordner erstellt, der den gleichen Namen wie die PDF trägt. In diesem Unterordner werden die extrahierten Daten in verschiedenen Formaten gespeichert:
+      - Extrahierte PDFs der einzelnen Abschnitte (z. B. Abschnitt 3, Abschnitt 11, Abschnitt 12).
+      - JSON-Dateien mit den analysierten Daten für jeden Abschnitt (z. B. `result3.json`, `result11.json`, `result12.json`).
+      - Eine finale JSON-Datei, die alle Ergebnisse zusammenführt.
+
+    - **Fehlerordner**: Wenn bei der Extraktion oder Analyse einer PDF etwas schiefgeht, wird diese PDF in den Fehlerordner verschoben, damit du sie später überprüfen kannst. Das Skript fährt mit der Verarbeitung der anderen PDFs fort, auch wenn eine fehlschlägt. 
+      - Du kannst jedoch den Code so anpassen, dass das Skript sofort abbricht, falls ein Fehler auftritt, anstatt fortzufahren und die fehlerhafte Datei nur zu verschieben.
+
+2. Nach der Anpassung der Pfade kannst du das Skript ausführen:
+
+```bash
+python main.py
