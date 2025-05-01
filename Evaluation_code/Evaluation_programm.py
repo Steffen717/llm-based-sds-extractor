@@ -414,7 +414,6 @@ class ExcelViewer:
         wb.save(save_path)
         json_filename = "corrected_final.json"
         json_path = os.path.join(self.current_folder, json_filename)
-        print (json_path)
         excel_to_json(orig_path, json_path)
 
     def save_dataset_results(self):
