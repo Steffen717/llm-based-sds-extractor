@@ -191,36 +191,95 @@ class ExcelViewer:
             self.render_pdf()
 
     def count_rows(self, worksheet):
-        return sum(1 for _ in worksheet.iter_rows())
-
-    def detect_tables_and_count_cells(self, worksheet):
         table_widths = [9, 8, 8, 4]
-        total_cells = 0
-        current_table = 0
+        header_row_counts = [1, 1, 1, 1]
+        total_rows = 0
+        table_idx = 0
         in_table = False
-        row_count = 0
+        skipped_headers = 0
+        empty_streak = 0
+
         for row in worksheet.iter_rows():
-            if current_table >= len(table_widths):
+            if table_idx >= len(table_widths):
                 break
-            width = table_widths[current_table]
+
+            width = table_widths[table_idx]
             is_empty = all(cell.value is None for cell in row[:width])
-            if not is_empty:
-                in_table = True
-                row_count += 1
+
+            if not in_table:
+                if is_empty:
+                    empty_streak += 1
+                    if empty_streak == 2:
+                        table_idx += 1
+                        empty_streak = 0
+                else:
+                    in_table = True
+                    skipped_headers = 0
+                    empty_streak = 0
+                    total_rows += 1
             else:
-                if in_table:
-                    total_cells += row_count * width
-                    in_table = False
-                    row_count = 0
-                    current_table += 1
-        if in_table and current_table < len(table_widths):
-            total_cells += row_count * table_widths[current_table]
+                if skipped_headers < header_row_counts[table_idx]:
+                    skipped_headers += 1
+                else:
+                    if is_empty:
+                        table_idx += 1
+                        in_table = False
+                        empty_streak = 1
+                    else:
+                        total_rows += 1
+
+        return total_rows
+
+    def count_cells(self, worksheet):
+        table_widths = [9, 8, 8, 4]
+        header_row_counts = [1, 1, 1, 1]
+        total_cells = 0
+        table_idx = 0
+        in_table = False
+        skipped_headers = 0
+        data_rows = 0
+        empty_streak = 0
+
+        for row in worksheet.iter_rows():
+            if table_idx >= len(table_widths):
+                break
+
+            width = table_widths[table_idx]
+            is_empty = all(cell.value is None for cell in row[:width])
+
+            if not in_table:
+                if is_empty:
+                    empty_streak += 1
+                    if empty_streak == 2:
+                        table_idx += 1
+                        empty_streak = 0
+                else:
+                    in_table = True
+                    skipped_headers = 0
+                    data_rows = 0
+                    empty_streak = 0
+                    total_cells += width
+            else:
+                if skipped_headers < header_row_counts[table_idx]:
+                    skipped_headers += 1
+                else:
+                    if is_empty:
+                        total_cells += data_rows * width
+                        table_idx += 1
+                        in_table = False
+                        empty_streak = 1
+                    else:
+                        data_rows += 1
+
+        if in_table and table_idx < len(table_widths):
+            total_cells += data_rows * table_widths[table_idx]
+
         return total_cells
 
     def load_excel(self, path):
         wb = load_workbook(path)
         ws = wb.active
-        self.current_total_cells = self.detect_tables_and_count_cells(ws)
+        self.current_total_cells = self.count_cells(ws)
         self.current_row_count = self.count_rows(ws)
         self.dataset_row_count[os.path.basename(self.current_folder)] = self.current_row_count
 
