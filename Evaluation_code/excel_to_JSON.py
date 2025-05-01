@@ -148,10 +148,3 @@ def excel_to_json(input_excel, output_json):
 
     with open(output_json, "w", encoding="utf-8") as f:
         json.dump(json_output, f, ensure_ascii=False, indent=2)
-
-
-# Beispielaufruf
-input_excel = r"C:\Users\Steffen Kades\Desktop\daten\paar7\Tabelle.xlsx"
-output_json = r"C:\Users\Steffen Kades\Desktop\result\rekonstruiert.json"
-
-excel_to_json(input_excel, output_json)

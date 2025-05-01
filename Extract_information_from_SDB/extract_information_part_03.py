@@ -46,14 +46,7 @@ class Concentrationlimit(BaseModel):
 class ATE(BaseModel):
     expositionsdauer: float
     expositionsdauer_einheit: str
-    expositionsweg: str = Field(
-        None,
-        description=(
-            "Wie wird es verabreicht: inhalativ (einatmen), inhalativ (Staub/Nebel), "
-            "inhalativ (Gas), inhalativ (Dampf), dermal, oral (schlucken). "
-            "Bei 'einatmen' verwende 'inhalativ', bei 'schlucken' verwende 'oral'."
-        )
-    )
+    expositionsweg: str = Field( None,description="Wie wird es verabreicht: inhalativ (einatmen), inhalativ (Staub/Nebel),inhalativ (Gas), inhalativ (Dampf), dermal, oral (schlucken). Bei 'einatmen' verwende 'inhalativ', bei 'schlucken' verwende 'oral'.")
     methode: str
     spezies: str
     typ: str
@@ -76,7 +69,7 @@ class Component(BaseModel):
 
 class DBAnalyst(BaseModel):
     components: list[Component]
-    Tabellen_header_Konzentrations_Einheit: str = Field(None, description="Gibt die genaue Konzentrationseinheit an, die im Tabellenkopf oder im PDF angegeben ist (z. B. Vol%, Gew%, %)")
+    Tabellen_header_Konzentrations_Einheit: str = Field(None, description="Gibt die genaue Konzentrationseinheit an, die im Tabellenkopf angegeben ist, wie vol%, gewicht% etc., oder im PDF angegeben ist, falls vorhanden.")
 
 def analyze_safety_data_sheet3(file_path, output_folder):
     # Output-Ordner erstellen
@@ -103,15 +96,15 @@ def analyze_safety_data_sheet3(file_path, output_folder):
                     {
                         "type": "text",
                         "text": """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. Extrahiere die Daten aus Abschnitt 3 und füge sie in das JSON-Schema ein.
-                        Jeder Stoff im Gemisch hat nur eine Konzentration. Achte darauf, immer alle Namen vollständig aufzuführen.
-                        Jeweils für den Max-Wert mit einem Vorzeichen und einen für den Min-Wert mit einem Vorzeichen.
-                        Wenn in der Konzentration nur ein Max-Wert vorhanden ist, darf ausschließlich ein Max-Operator stehen – für Min gilt dasselbe.
-                        Zusätzlich vermerke die genaue Prozent-Einheit, falls Informationen dazu vorhanden sind: Gewichts-%, Volumen-%, nur %, o. Ä.
-                        Notiere diese Information unter 'Tabellen_header_Konzentrations_Einheit', falls irgendwo im PDF ein entsprechender Hinweis steht.
-                        Gib exakt das wieder, was im Dokument steht. Zusätzliche Informationen, die nicht in das restliche Schema passen, sollen unter 'sonstiges' vermerkt werden.
-                        Vergiss keinen Stoff. Falls es spezifische Konzentrationslimits gibt, ordne sie der jeweiligen Stelle im JSON-Schema zu.
-                        Wenn weder Max noch Min einen Wert haben, zählt es nicht als Grenze und soll nicht eingeordnet werden.
-                        Wenn ein Wert fehlt, soll das Feld leer oder ein leerer String sein."""
+                        Jeder Stoff im Gemisch hat nur eine Konzentration. Achte darauf, immer alle Namen vollständig aufzuführen. 
+                        Jeweils für den Maximalwert mit einem Vorzeichen und einen für den Minimalwert mit einem Vorzeichen.
+                        Wenn in der Konzentration nur ein Maximalwert vorhanden ist, darf auch ausschließlich ein Max-Operator stehen, für Min genauso. 
+                        Zusätzlich vermerke die genaue Prozent-Einheit, falls Informationen dazu vorhanden sind (Gewicht%, Vol%, oder nur % oder ähnliches).
+                        Notiere in Tabellen_Header_Konzentrations_Einheit, falls irgendwo im PDF etwas in der Art steht. Exakt das, was im Dokument steht. 
+                        Zusätzlich sollen Extrainformationen, die nicht in das restliche Schema passen, in „Sonstiges“ vermerkt werden. Vergiss keine Stoffe.
+                        Falls es spezifische Konzentrationslimits gibt, packe sie an die jeweilige Stelle im JSON-Schema. 
+                        Falls weder Max noch Min einen Wert haben, ist es keiner und wird nicht dort eingeordnet.
+                        Falls etwas keinen Wert hat, soll es im Schema leer gelassen werden oder ein leerer String sein."""
                     },
                 ]
             }

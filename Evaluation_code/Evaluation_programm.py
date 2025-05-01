@@ -7,6 +7,7 @@ import time
 from PIL import Image, ImageTk
 import os
 from openpyxl.styles import PatternFill
+from excel_to_JSON import excel_to_json
 
 EXCEL_ROW_HEIGHT_PX = 15
 MIN_ROWS = 2
@@ -409,6 +410,9 @@ class ExcelViewer:
                 cell.fill = fill
         save_path = os.path.join(self.current_folder, "tabelle_geaendert.xlsx")
         wb.save(save_path)
+        json_filename = "corrected_final.json"
+        json_path = os.path.join(self.current_folder, json_filename)
+        excel_to_json(orig_path, json_path)
         messagebox.showinfo("Gespeichert", f"Änderungen wurden gespeichert unter:\n{save_path}")
 
     def save_dataset_results(self):

@@ -33,7 +33,7 @@ class ToxTests(BaseModel):
     trophieebene: str
     methode: str
     spezies: str
-    typ: str = Field(None, description="LD50, ATE, EC50, EL50, Schätzwert akuter Toxizität etc.")
+    typ: str = Field(None, description="LD50, ATE, EC50, EL50, Schätzwert der akuten Toxizität und Ähnliches")
     wert: Concentration
 
 class Component(BaseModel):
@@ -41,10 +41,7 @@ class Component(BaseModel):
     bcf: str            #BCF_logkow
     logPow: str
     ecotox: list[ToxTests]
-    biologischabbaubar: str = Field(
-        None,
-        description="nein/nicht -> nicht abbaubar, leicht/ja -> schnell"
-    )
+    biologischabbaubar: str = Field( None,description="nein/nicht -> nicht abbaubar, leicht/ja -> schnell")
     casNo: str
     sonstiges: str
 
@@ -68,22 +65,20 @@ def analyze_safety_data_sheet12(file_path: str, output_folder: str):
                         "type": "file",
                         "file": {"file_id": file.id}
                     },
-                    {
-                        "type": "text",
-                        "text": (
-                            "Du bist ein Experte für die Analyse von Sicherheitsdatenblättern. "
-                            "Extrahiere aus Abschnitt 12 die ökotoxikologischen Daten und füge sie in das JSON-Schema ein. "
-                            "Nimm keinerlei inhaltliche Veränderungen vor. Wenn ein Feld fehlt, verwende einen leeren String oder null bei Zahlen. "
-                            "Bei Konzentrationen soll nur dann min und max ausgefüllt werden, wenn entsprechende Werte im PDF stehen – keine Ergänzungen. "
-                            "Ordne Konzentrationswerte je nach Vorzeichen korrekt als min oder max ein. "
-                            "Bei 'Trophieebene' und 'Spezies' sind alle im PDF vorhandenen Informationen exakt zu übernehmen. "
-                            "Informationen zur biologischen Abbaubarkeit sollen nur enthalten sein, wenn explizit etwas über die Abbaubarkeit gesagt wird. "
-                            "LogPow ist vollständig zu extrahieren. "
-                            "Das Feld 'ecotox' soll alle Daten enthalten, die ökotoxikologisch relevant und strukturiert einordbar sind – "
-                            "auch chronische Daten oder Werte außerhalb von Standardparametern. "
-                            "Lass keine Angaben aus, die im PDF zu finden sind."
-                        )
-                    },
+                {
+                    "type": "text",
+                    "text": """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. 
+                                Extrahiere die Daten aus Abschnitt 12 und füge sie in das JSON-Schema ein. 
+                                Ich will, dass du keine Veränderungen vornimmst. Falls ein Feld leer ist, setze einen leeren String und bei Zahlen (null) und füge alles richtig in das JSON-Schema ein. 
+                                Füge bei Konzentration keine zusätzlichen Sachen ein, wenn nur ein Wert vorhanden ist, ist er nach dem Vorzeichen als Max oder Min einzuordnen. Mache keine Veränderungen, alles soll exakt so wie im PDF sein. 
+                                Achte bei Trophäenebene und Spezies darauf, alle Informationen des PDFs richtig einzuordnen. 
+                                Ich will Informationen zur biologischen Abbaubarkeit nur, wenn eine Aussage darüber gemacht wird, wie abbaubar es ist. 
+                                Gib in Konzentration nur, wenn mehrere Werte im PDF vorkommen, mehrere Werte ein. 
+                                LogPow auch immer alle Daten extrahieren und zuordnen. 
+                                Trage ALLE Daten, die im PDF vorhanden sind, und lasse nichts aus. 
+                                In Ecotox sollen alle Teile stehen, die Informationen, welche für Ecotox relevant sind und in das Schema passen, beinhalten. Wenn es für chronisch oder anderes ist, führe es trotzdem auf.
+                                """,
+                },
                 ]
             }
         ],

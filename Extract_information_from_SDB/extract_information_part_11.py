@@ -25,21 +25,11 @@ class Concentration(BaseModel):
 class ToxTests(BaseModel):
     expositionsdauer: float
     expositionsdauer_einheit: str
-    expositionsweg: str = Field(
-        None,
-        description=(
-            "Wie wird es verabreicht: inhalativ (einatmen), inhalativ (Staub/Nebel), "
-            "inhalativ (Gas), inhalativ (Dampf), dermal, oral (schlucken). "
-            "Bei 'einatmen' verwende 'inhalativ', bei 'schlucken' verwende 'oral'."
-        )
-    )
+    expositionsweg: str = Field(None,description="Wie wird es verabreicht: inhalativ/(einatmen), inhalativ (Staub/Nebel), inhalativ (Gas), inhalativ (Dampf), dermal, oral/(verschlucken). Falls 'einatmen' im PDF steht, benutze inhalativ, und wenn 'schlucken' steht, benutze oral.")
     methode: str
     spezies: str
-    typ: str = Field(None, description="LD50, ATE, Schätzwert akuter Toxizität etc.")
-    wert: Concentration = Field(
-        None,
-        description="Wenn nur ein Minimalwert vorhanden ist, gib nur diesen an – analog bei Maximalwert."
-    )
+    typ: str = Field(None, description="LD50, ATE, Schätzwert der akuten Toxizität und Ähnliches")
+    wert: Concentration = Field(None,description="Wenn nur ein Min-Wert existiert, führe auch nur diesen auf; für Max genauso.")
 
 class Component(BaseModel):
     name: str
@@ -71,23 +61,18 @@ def analyze_safety_data_sheet11(file_path: str, output_folder: str):
                     },
                     {
                         "type": "text",
-                        "text": (
-                            "Du bist ein Experte für die Analyse von Sicherheitsdatenblättern. "
-                            "Extrahiere aus Abschnitt 11 des PDFs die toxikologischen Daten für inhalative, dermale und orale Werte "
-                            "sowie ATE (Akute Toxizität) und überführe sie in das JSON-Schema – nur wenn diese Informationen vorhanden sind. "
-                            "Gib toxikologische Angaben ausschließlich an, wenn sie im PDF vorhanden sind. "
-                            "Wenn ein Wert fehlt, soll er als leerer String oder – bei Zahlen – als null dargestellt werden. "
-                            "Das JSON-Schema soll immer vollständig ausgegeben werden. "
-                            "Füge in der Konzentration nichts Zusätzliches ein. "
-                            "Wenn nur ein Wert vorhanden ist, wird er je nach Vorzeichen als min oder max eingeordnet. "
-                            "Das Feld 'tox' im Schema darf nur Einträge enthalten, wenn entsprechende Informationen im PDF stehen. "
-                            "Mache keine Interpretationen oder inhaltlichen Änderungen – gib alles exakt so wieder, wie es im PDF steht. "
-                            "Führe alle Stoffe auf, bei denen Informationen vorliegen – auch wenn Einträge mehrfach vorkommen. "
-                            "Wenn ein Stoff z. B. mehrfach „oral“, „dermal“ oder „inhalativ“ vorkommt, sollen alle Versionen einzeln aufgenommen werden – "
-                            "auch bei nur geringfügigen Unterschieden (z. B. anderer Wert oder andere Dauer). "
-                            "Beim Eintrag 'expositionsweg' sollen Staub, Nebel, Gas, Dampf etc. immer exakt übernommen werden. "
-                            "Verwende: 'inhalativ' bei 'einatmen', 'oral' bei 'schlucken'."
-                        )
+                        "text": """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. 
+                                    Extrahiere aus Abschnitt 11 des PDFs die toxikologischen Daten für die inhalativen, dermalen und oralen Werte sowie die ATE (Akute Toxizität) und füge sie in das JSON-Schema ein. 
+                                    Falls vorhanden, ansonsten füge sie nicht ins JSON-Schema ein. 
+                                    Achte darauf, alle Stoffe zu berücksichtigen und gib die toxikologischen Angaben nur an, falls diese vorhanden sind. 
+                                    Wenn etwas nicht vorhanden ist, soll es als leerer String und, falls es sich um Zahlen handelt, mit (null) dargestellt werden. 
+                                    Das JSON-Schema immer komplett ausgeben. 
+                                    Füge bei Konzentration keine zusätzlichen Sachen ein, wenn nur ein Wert vorhanden ist, ist es nach dem Vorzeichen als Max oder Min einzuordnen. 
+                                    Die Konzentration hat jeweils einen Max-Wert mit einem Vorzeichen und einen für den Min-Wert mit einem Vorzeichen. 
+                                    Im Tox-Array vom Schema soll nur etwas aufgezählt werden, wenn Informationen für dieses im PDF stehen. 
+                                    Mache keine Veränderungen, alles soll exakt so wie im PDF sein. 
+                                    Führe ALLE Stoffe auf, bei denen es zutrifft, auch wenn einiges doppelt ist. Wenn ein Stoff in der gleichen Kategorie mehrmals etwas stehen hat und sich nur ein Wert ändert, kann es also mehrmals oral, dermal und inhalativ pro Stoff existieren. 
+                                    Bei inhalativ soll auch Staub, Nebel, Gas, Dampf immer genau notiert werden im Expositionsweg."""
                     },
                 ]
             }
