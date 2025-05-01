@@ -15,8 +15,10 @@ load_dotenv()
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 class BCF_logkow(BaseModel):
-    operator: str
-    value: str
+    min: float
+    minoperator: str
+    max: float
+    maxoperator: str
 
 class Concentration(BaseModel):
     min: float
@@ -35,8 +37,8 @@ class ToxTests(BaseModel):
     wert: Concentration
 
 class Component(BaseModel):
-    name: float           #BCF_logkow
-    bcf: float            #BCF_logkow
+    name: str           #BCF_logkow
+    bcf: str            #BCF_logkow
     logPow: str
     ecotox: list[ToxTests]
     biologischabbaubar: str = Field(

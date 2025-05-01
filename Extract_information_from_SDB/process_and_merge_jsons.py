@@ -106,8 +106,21 @@ def parse_abschnitt_3(file_path):
             "mFaktorAkut": replace_zero(comp.get("mFactorAcute")),
             "mFaktorChronisch": replace_zero(comp.get("mFactorChronic")),
             "euhSaetze": [e["Nummer"] for e in comp["EuhNr"]] if comp.get("EuhNr") else None,
-            "bcf": replace_zero(comp.get("bcf")),                                               #"bcf": f"{comp.get('bcf', {}).get('operator', '')} {replace_zero(comp.get('bcf', {}).get('value'))}".strip(), 
-            "logKow": replace_zero(comp.get("logKow")),                                          #"logKow": f"{comp.get('logKow', {}).get('operator', '')} {replace_zero(comp.get('logKow', {}).get('value'))}".strip(),    
+            "bcf": replace_zero(comp.get("bcf")),
+            "logKow": replace_zero(comp.get("logKow")),                                                
+            # "bcf": format_concentration(
+                            # replace_zero(comp.get("bcf", {}).get("min")),
+                            # normalize_operator(comp.get("bcf", {}).get("minoperator", "")),
+                            # replace_zero(comp.get("bcf", {}).get("max")),
+                            # normalize_operator(comp.get("bcf", {}).get("maxoperator", "")),
+                            # ""
+            # ), "logKow": format_concentration(
+                            # replace_zero(comp.get("logKow", {}).get("min")),
+                            # normalize_operator(comp.get("logKow", {}).get("minoperator", "")),
+                            # replace_zero(comp.get("logKow", {}).get("max")),
+                            # normalize_operator(comp.get("logKow", {}).get("maxoperator", "")),
+                            # ""
+            #),
             "biolAbbaubar": replace_zero(comp.get("biolAbbaubar")),
         }
         substance = {k: v for k, v in substance.items() if v is not None}
