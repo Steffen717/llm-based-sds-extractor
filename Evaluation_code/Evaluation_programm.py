@@ -96,7 +96,7 @@ class ExcelViewer:
         self.prev_data_button.grid(row=0, column=0, padx=5)
         self.current_dataset_label = tk.Label(self.nav_inner, text="0 von 0", font=('Arial', 10))
         self.current_dataset_label.grid(row=0, column=1, padx=5)
-        self.next_data_button = tk.Button(self.nav_inner, text="Weiter ▶", command=self.load_next_dataset)
+        self.next_data_button = tk.Button(self.nav_inner, text="Weiter ▶", command=lambda: (self.save_excel(), self.load_next_dataset()))
         self.next_data_button.grid(row=0, column=2, padx=5)
         self.save_button = tk.Button(self.nav_inner, text="Änderungen speichern", command=self.save_excel)
         self.save_button.grid(row=0, column=3, padx=5)
@@ -387,6 +387,8 @@ class ExcelViewer:
         self.current_dataset_label.config(text=f"{self.current_dataset_index + 1} von {len(self.dataset_folders)}")
 
     def load_next_dataset(self):
+        self.resume_timer
+        self.save_excel
         if self.current_dataset_index + 1 < len(self.dataset_folders):
             self.load_dataset(self.current_dataset_index + 1)
         else:
@@ -412,8 +414,8 @@ class ExcelViewer:
         wb.save(save_path)
         json_filename = "corrected_final.json"
         json_path = os.path.join(self.current_folder, json_filename)
+        print (json_path)
         excel_to_json(orig_path, json_path)
-        messagebox.showinfo("Gespeichert", f"Änderungen wurden gespeichert unter:\n{save_path}")
 
     def save_dataset_results(self):
         result_file = os.path.join(self.base_folder, "auswertung.xlsx")

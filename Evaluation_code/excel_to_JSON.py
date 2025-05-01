@@ -12,7 +12,7 @@ def excel_to_json(input_excel, output_json):
         if s.startswith("'"):
             s = s[1:]
         return s
-    
+
     def extract_index_from_name(subst_str):
         """Extrahiere den Index aus dem Namen (wenn er in Klammern steht)."""
         match = re.search(r"\((\d+)\)", subst_str)
@@ -22,19 +22,48 @@ def excel_to_json(input_excel, output_json):
         match = re.search(r"\((\d+)\)", subst_str)
         return int(match.group(1)) if match else None
 
-    def split_sections(df):
-        empty_rows = df[df.isnull().all(axis=1)].index.tolist()
+    def split_sections(df, expected_tables=4):
+        """
+        Splittet df in genau expected_tables DataFrames.
+        - Eine einzelne leere Zeile markiert das Ende eines Abschnitts.
+        - Bei jeder zweiten aufeinanderfolgenden leeren Zeile wird eine fehlende Sub-Tabelle (leerer DF) eingefügt.
+        """
         sections = []
-        prev = 0
-        for row in empty_rows + [len(df)]:
-            if prev < row:
-                sections.append(df.iloc[prev:row])
-            prev = row + 1
-        return sections
+        current_rows = []
+        empty_count = 0
 
+        for _, row in df.iterrows():
+            if row.isnull().all():
+                empty_count += 1
+                if empty_count % 2 == 1:
+                    # ungerade: Abschluss des aktuellen Abschnitts
+                    if current_rows:
+                        sections.append(pd.DataFrame(current_rows, columns=df.columns))
+                        current_rows = []
+                else:
+                    # gerade: hier kommt eine fehlende Tabelle hin
+                    sections.append(pd.DataFrame(columns=df.columns))
+            else:
+                # echte Datenzeile → zurücksetzen und aufnehmen
+                empty_count = 0
+                current_rows.append(row)
+
+        # letzte Sammelzeilen als letzter Abschnitt
+        if current_rows:
+            sections.append(pd.DataFrame(current_rows, columns=df.columns))
+
+        # Auffüllen, falls wir noch unter expected_tables sind
+        while len(sections) < expected_tables:
+            sections.append(pd.DataFrame(columns=df.columns))
+
+        # Nur die ersten expected_tables zurückgeben
+        return sections[:expected_tables]
+
+    # Excel einlesen
     df_raw = pd.read_excel(input_excel, sheet_name="Daten", dtype=str)
-    sections = split_sections(df_raw)
-    df_inhaltsstoffe, df_tox, df_ecotox, df_bcf = [s.reset_index(drop=True) for s in sections[:4]]
+    # In vier Abschnitte aufsplitten, fehlende Tabellen werden übersprungen
+    sections = split_sections(df_raw, expected_tables=4)
+    df_inhaltsstoffe, df_tox, df_ecotox, df_bcf = [s.reset_index(drop=True) for s in sections]
 
     # Abschnitt 1: gefährliche Inhaltsstoffe
     gefaehrlicheInhaltsstoffe = []
@@ -50,8 +79,7 @@ def excel_to_json(input_excel, output_json):
         reach = re.search(r'REACH: ([^\n]*)', nummern)
 
         gefahr_raw = safe_str(row.get("Gefahrenkategorien und H-Sätze"))
-        gefahr_liste = []
-        hsaetze_liste = []
+        gefahr_liste, hsaetze_liste = [], []
         if gefahr_raw:
             for item in gefahr_raw.split(";\n"):
                 if "-" in item:
@@ -66,7 +94,7 @@ def excel_to_json(input_excel, output_json):
         grenzen = []
         if grenzen_raw:
             for gr in grenzen_raw.split(";\n"):
-                match = re.match(r"([^-\n]+)-([^:]+): (.+)", gr)
+                match = re.match(r"([^\-\n]+)-([^:]+): (.+)", gr)
                 if match:
                     h, gk, sz = match.groups()
                     grenzen.append({
@@ -94,7 +122,7 @@ def excel_to_json(input_excel, output_json):
 
         gefaehrlicheInhaltsstoffe.append(substanz)
 
-    # Abschnitt 2: tox
+    # Abschnitt 2: Toxikologie
     tox = []
     for _, row in df_tox.iterrows():
         substanz_name = safe_str(row.get("Stoffname"))
@@ -112,7 +140,7 @@ def excel_to_json(input_excel, output_json):
             "expositionsdauer": safe_str(row.get("M-Faktor Chronisch")),
         })
 
-    # Abschnitt 3: ecoTox
+    # Abschnitt 3: EcoTox
     ecoTox = []
     for _, row in df_ecotox.iterrows():
         idx = extract_index(safe_str(row.get("Stoffname")))

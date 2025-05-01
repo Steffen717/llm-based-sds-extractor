@@ -62,7 +62,8 @@ def analyze_safety_data_sheet11(file_path: str, output_folder: str):
                     {
                         "type": "text",
                         "text": """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. 
-                                    Extrahiere aus Abschnitt 11 des PDFs die toxikologischen Daten für die inhalativen, dermalen und oralen Werte sowie die ATE (Akute Toxizität) und füge sie in das JSON-Schema ein. 
+                                    Extrahiere aus Abschnitt 11 des PDFs die toxikologischen Daten für die inhalativen,
+                                    dermalen und oralen Werte sowie die ATE (Akute Toxizität) und füge sie in das JSON-Schema ein. 
                                     Falls vorhanden, ansonsten füge sie nicht ins JSON-Schema ein. 
                                     Achte darauf, alle Stoffe zu berücksichtigen und gib die toxikologischen Angaben nur an, falls diese vorhanden sind. 
                                     Wenn etwas nicht vorhanden ist, soll es als leerer String und, falls es sich um Zahlen handelt, mit (null) dargestellt werden. 
@@ -71,7 +72,8 @@ def analyze_safety_data_sheet11(file_path: str, output_folder: str):
                                     Die Konzentration hat jeweils einen Max-Wert mit einem Vorzeichen und einen für den Min-Wert mit einem Vorzeichen. 
                                     Im Tox-Array vom Schema soll nur etwas aufgezählt werden, wenn Informationen für dieses im PDF stehen. 
                                     Mache keine Veränderungen, alles soll exakt so wie im PDF sein. 
-                                    Führe ALLE Stoffe auf, bei denen es zutrifft, auch wenn einiges doppelt ist. Wenn ein Stoff in der gleichen Kategorie mehrmals etwas stehen hat und sich nur ein Wert ändert, kann es also mehrmals oral, dermal und inhalativ pro Stoff existieren. 
+                                    Führe ALLE Stoffe auf, bei denen es zutrifft, auch wenn einiges doppelt ist. Wenn ein Stoff in der gleichen Kategorie mehrmals etwas stehen hat und sich nur ein Wert ändert,
+                                    kann es also mehrmals oral, dermal und inhalativ pro Stoff existieren. 
                                     Bei inhalativ soll auch Staub, Nebel, Gas, Dampf immer genau notiert werden im Expositionsweg."""
                     },
                 ]
