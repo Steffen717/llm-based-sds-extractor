@@ -64,10 +64,10 @@ python main.py
 
 - **Navigation durch Ordner:** Du kannst zwischen verschiedenen PDFs navigieren, wenn mehrere extrahiert wurden, oder zum vorherigen Dokument zurückspringen. Beim Wechsel wird das Speichern der Änderungen automatisch ausgelöst.
 
-- **Automatisches Speichern:** Das Excel-Dokument wird automatisch gespeichert, und alle Änderungen werden rot markiert. Zusätzlich wird das Excel-Dokument in JSON umgewandelt und gespeichert.
+- **Speichern der Änderungen:** Änderungen werden nicht automatisch gespeichert. Das Speichern erfolgt nur, wenn du zum nächsten PDF wechselst oder den entsprechenden Speichern-Button manuell drückst.
 
 - **Zeittracking:** Die Zeit wird während der Bearbeitung erfasst. Du kannst die Zeit stoppen, wenn du möchtest. Beim Wechsel zum nächsten Blatt wird der Timer automatisch wieder gestartet oder du kannst ihn manuell starten.
 
-- **Auswertungs-Export:** Eine Auswertung des gesamten Datensatzes kann exportiert werden. Diese enthält die Anzahl der Zellen, Zeilen, bearbeitete Zeit, Fehler und den Namen des PDFs. (Hinweis: Kopfzeilen werden aktuell noch nicht entfernt, dies ist ein Work in Progress.)
+- **Auswertungs-Export:** Eine Auswertung des gesamten Datensatzes kann exportiert werden. Diese enthält die Anzahl der Zellen, Zeilen, benötigte Zeit, Fehler und den Namen des PDFs. (Hinweis: Kopfzeilen werden aktuell noch mit gezählt, dies ist ein Work in Progress.)
 
 - **Suche im PDF:** Du kannst das PDF nach bestimmten Wörtern durchsuchen und direkt zu den Stellen springen, die diese Wörter enthalten.
