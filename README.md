@@ -60,7 +60,7 @@ python main.py
 
 - **Anzeige von Excel und PDF:** Auf der linken Seite wird das Excel-Dokument angezeigt, auf der rechten Seite das PDF.
   
-- **Fehlerkorrektur und Zählung:** Fehler können direkt im Excel-Dokument auf der linken Seite korrigiert werden. Diese werden automatisch gezählt, sobald eine Zelle verändert wird. Änderungen werden dabei markiert. Es besteht auch die Möglichkeit, manuell Fehler hinzuzufügen oder zu entfernen.
+- **Fehlerkorrektur und Zählung:** Fehler können direkt im Excel-Dokument auf der linken Seite korrigiert werden. Diese werden automatisch gezählt, sobald eine Zelle verändert wird. Die veränderten Zellen werden dabei markiert. Es besteht auch die Möglichkeit, manuell Fehler hinzuzufügen oder zu entfernen.
 
 - **Navigation durch Ordner:** Du kannst zwischen verschiedenen PDFs navigieren, wenn mehrere extrahiert wurden, oder zum vorherigen Dokument zurückspringen. Beim Wechsel wird das Speichern der Änderungen automatisch ausgelöst.
 
