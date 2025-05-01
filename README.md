@@ -68,6 +68,6 @@ python main.py
 
 - **Zeittracking:** Die Zeit wird während der Bearbeitung erfasst. Du kannst die Zeit stoppen, wenn du möchtest. Beim Wechsel zum nächsten Blatt wird der Timer automatisch wieder gestartet oder du kannst ihn manuell starten.
 
-- **Auswertungs-Export:** Eine Auswertung des gesamten Datensatzes kann exportiert werden. Diese enthält die Anzahl der Zellen, Zeilen, benötigte Zeit, Fehler und den Namen des PDFs. (Hinweis: Kopfzeilen werden aktuell noch mit gezählt, dies ist ein Work in Progress.)
+- **Auswertungs-Export:** Eine Auswertung des gesamten Datensatzes kann exportiert werden. Diese enthält die Anzahl der Zellen, Zeilen, benötigte Zeit, Fehler und den Namen des PDFs.
 
 - **Suche im PDF:** Du kannst das PDF nach bestimmten Wörtern durchsuchen und direkt zu den Stellen springen, die diese Wörter enthalten.
