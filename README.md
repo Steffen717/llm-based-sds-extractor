@@ -54,3 +54,20 @@ Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
 
 ```bash
 python main.py
+```
+
+### Funktionen der GUI:
+
+- **Anzeige von Excel und PDF:** Auf der linken Seite wird das Excel-Dokument angezeigt, auf der rechten Seite das PDF.
+  
+- **Fehlerkorrektur und Zählung:** Fehler können direkt im Excel-Dokument auf der linken Seite korrigiert werden. Diese werden automatisch gezählt, sobald eine Zelle verändert wird. Die veränderten Zellen werden dabei markiert. Es besteht auch die Möglichkeit, manuell Fehler hinzuzufügen oder zu entfernen.
+
+- **Navigation durch Ordner:** Du kannst zwischen verschiedenen PDFs navigieren, wenn mehrere extrahiert wurden, oder zum vorherigen Dokument zurückspringen. Beim Wechsel wird das Speichern der Änderungen automatisch ausgelöst.
+
+- **Speichern der Änderungen:** Änderungen werden nicht automatisch gespeichert. Das Speichern erfolgt nur, wenn du zum nächsten PDF wechselst oder den entsprechenden Speichern-Button manuell drückst.
+
+- **Zeittracking:** Die Zeit wird während der Bearbeitung erfasst. Du kannst die Zeit stoppen, wenn du möchtest. Beim Wechsel zum nächsten Blatt wird der Timer automatisch wieder gestartet oder du kannst ihn manuell starten.
+
+- **Auswertungs-Export:** Eine Auswertung des gesamten Datensatzes kann exportiert werden. Diese enthält die Anzahl der Zellen, Zeilen, benötigte Zeit, Fehler und den Namen des PDFs. (Hinweis: Kopfzeilen werden aktuell noch mit gezählt, dies ist ein Work in Progress.)
+
+- **Suche im PDF:** Du kannst das PDF nach bestimmten Wörtern durchsuchen und direkt zu den Stellen springen, die diese Wörter enthalten.
