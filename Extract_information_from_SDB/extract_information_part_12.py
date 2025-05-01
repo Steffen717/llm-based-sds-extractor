@@ -14,6 +14,10 @@ load_dotenv()
 # OpenAI-Client initialisieren
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
+class BCF_logkow(BaseModel):
+    operator: str
+    value: str
+
 class Concentration(BaseModel):
     min: float
     minoperator: str
@@ -31,13 +35,13 @@ class ToxTests(BaseModel):
     wert: Concentration
 
 class Component(BaseModel):
-    name: str
-    bcf: str
+    name: float           #BCF_logkow
+    bcf: float            #BCF_logkow
     logPow: str
     ecotox: list[ToxTests]
     biologischabbaubar: str = Field(
         None,
-        description="z. B. 'leicht abbaubar', 'nicht abbaubar'; nur falls im PDF explizit erwähnt"
+        description="nein/nicht -> nicht abbaubar, leicht/ja -> schnell"
     )
     casNo: str
     sonstiges: str

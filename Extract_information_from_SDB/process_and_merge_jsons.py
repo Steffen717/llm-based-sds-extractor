@@ -17,7 +17,7 @@ def create_empty_json():
     }
 
 def normalize_operator(op):
-    op = op.replace("≥", "=>").replace("≤", "=<").replace("-", "").strip()
+    op = op.replace("≥", ">=").replace("≤", "<=").replace("-", "").strip()
     return "" if op == "=" else op
 
 def clean_name(name: str) -> str:
@@ -106,9 +106,9 @@ def parse_abschnitt_3(file_path):
             "mFaktorAkut": replace_zero(comp.get("mFactorAcute")),
             "mFaktorChronisch": replace_zero(comp.get("mFactorChronic")),
             "euhSaetze": [e["Nummer"] for e in comp["EuhNr"]] if comp.get("EuhNr") else None,
-            "bcf": replace_zero(comp.get("bcf")),
+            "bcf": replace_zero(comp.get("bcf")),                                               #"bcf": f"{comp.get('bcf', {}).get('operator', '')} {replace_zero(comp.get('bcf', {}).get('value'))}".strip(), 
+            "logKow": replace_zero(comp.get("logKow")),                                          #"logKow": f"{comp.get('logKow', {}).get('operator', '')} {replace_zero(comp.get('logKow', {}).get('value'))}".strip(),    
             "biolAbbaubar": replace_zero(comp.get("biolAbbaubar")),
-            "logKow": replace_zero(comp.get("logKow"))
         }
         substance = {k: v for k, v in substance.items() if v is not None}
         substances.append(substance)
