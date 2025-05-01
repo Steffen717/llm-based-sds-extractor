@@ -53,7 +53,7 @@ Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
 2. Nach der Anpassung der Pfade kannst du das Skript ausführen:
 
 ```bash
-python main.py
+python Extract_information_from_SDB/main.py
 ```
 
 ### Funktionen der GUI:
