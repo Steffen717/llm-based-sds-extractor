@@ -53,7 +53,7 @@ Ersetze dein_api_schluessel mit deinem tatsächlichen OpenAI API-Schlüssel.
 2. Nach der Anpassung der Pfade kannst du das Skript ausführen:
 
 ```bash
-python main.py
+python Extract_information_from_SDB/main.py
 ```
 
 ### Funktionen der GUI:
@@ -64,10 +64,10 @@ python main.py
 
 - **Navigation durch Ordner:** Du kannst zwischen verschiedenen PDFs navigieren, wenn mehrere extrahiert wurden, oder zum vorherigen Dokument zurückspringen. Beim Wechsel wird das Speichern der Änderungen automatisch ausgelöst.
 
-- **Speichern der Änderungen:** Änderungen werden nicht automatisch gespeichert. Das Speichern erfolgt nur, wenn du zum nächsten PDF wechselst oder den entsprechenden Speichern-Button manuell drückst.
+- **Speichern der Änderungen:** Änderungen werden nicht automatisch gespeichert. Das Speichern erfolgt nur, wenn du zum nächsten PDF wechselst oder den entsprechenden Speichern-Button manuell drückst. Beim Speichern werden automatisch eine Excel-Datei mit den veränderten Daten erstellt und diese anschließend in eine korrigierte JSON-Datei umgewandelt.
 
 - **Zeittracking:** Die Zeit wird während der Bearbeitung erfasst. Du kannst die Zeit stoppen, wenn du möchtest. Beim Wechsel zum nächsten Blatt wird der Timer automatisch wieder gestartet oder du kannst ihn manuell starten.
 
-- **Auswertungs-Export:** Eine Auswertung des gesamten Datensatzes kann exportiert werden. Diese enthält die Anzahl der Zellen, Zeilen, benötigte Zeit, Fehler und den Namen des PDFs. (Hinweis: Kopfzeilen werden aktuell noch mit gezählt, dies ist ein Work in Progress.)
+- **Auswertungs-Export:** Eine Auswertung des gesamten Datensatzes kann im Excel-Format exportiert werden, welche die Anzahl der Zellen, Zeilen, die benötigte Zeit, Fehler sowie den Namen des PDFs enthält.
 
 - **Suche im PDF:** Du kannst das PDF nach bestimmten Wörtern durchsuchen und direkt zu den Stellen springen, die diese Wörter enthalten.
