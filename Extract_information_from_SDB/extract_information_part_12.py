@@ -75,6 +75,7 @@ def analyze_safety_data_sheet12(file_path: str, output_folder: str):
                                 Ich will Informationen zur biologischen Abbaubarkeit nur, wenn eine Aussage darüber gemacht wird, wie abbaubar es ist. 
                                 Gib in Konzentration nur, wenn mehrere Werte im PDF vorkommen, mehrere Werte ein. 
                                 LogPow auch immer alle Daten extrahieren und zuordnen. 
+                                Bei logkow immer nur die Zahlen und dessen vorzeichen extrahieren, zusatzinformationen wie ph wert und Temperatur ignorieren
                                 Trage ALLE Daten, die im PDF vorhanden sind, und lasse nichts aus. 
                                 In Ecotox sollen alle Teile stehen, die Informationen, welche für Ecotox relevant sind und in das Schema passen, beinhalten. Wenn es für chronisch oder anderes ist, führe es trotzdem auf.
                                 """,
@@ -119,3 +120,4 @@ def analyze_safety_data_sheet12(file_path: str, output_folder: str):
     print(f"Ergebnis gespeichert in {output_file}")
     print(f"Verwendete Tokens: {tokens_used}")
     return output_file
+

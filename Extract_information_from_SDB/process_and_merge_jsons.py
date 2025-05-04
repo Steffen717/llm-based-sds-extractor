@@ -109,18 +109,18 @@ def parse_abschnitt_3(file_path):
             "bcf": replace_zero(comp.get("bcf")),
             "logKow": replace_zero(comp.get("logKow")),                                                
             # "bcf": format_concentration(
-                            # replace_zero(comp.get("bcf", {}).get("min")),
-                            # normalize_operator(comp.get("bcf", {}).get("minoperator", "")),
-                            # replace_zero(comp.get("bcf", {}).get("max")),
-                            # normalize_operator(comp.get("bcf", {}).get("maxoperator", "")),
-                            # ""
-            # ), "logKow": format_concentration(
-                            # replace_zero(comp.get("logKow", {}).get("min")),
-                            # normalize_operator(comp.get("logKow", {}).get("minoperator", "")),
-                            # replace_zero(comp.get("logKow", {}).get("max")),
-                            # normalize_operator(comp.get("logKow", {}).get("maxoperator", "")),
-                            # ""
-            #),
+                            #   normalize_operator(comp.get("bcf", {}).get("minoperator", "")),
+                            #   replace_zero(comp.get("bcf", {}).get("min")),
+                            #   normalize_operator(comp.get("bcf", {}).get("maxoperator", "")),
+                            #   replace_zero(comp.get("bcf", {}).get("max")),
+                            # 
+            # ), 
+            # "logKow": format_concentration(
+                            #   normalize_operator(comp.get("logKow", {}).get("minoperator", "")),
+                            #   replace_zero(comp.get("logKow", {}).get("min")),
+                            #   normalize_operator(comp.get("logKow", {}).get("maxoperator", "")),    
+                            #   replace_zero(comp.get("logKow", {}).get("max")),            
+            # ),
             "biolAbbaubar": replace_zero(comp.get("biolAbbaubar")),
         }
         substance = {k: v for k, v in substance.items() if v is not None}
