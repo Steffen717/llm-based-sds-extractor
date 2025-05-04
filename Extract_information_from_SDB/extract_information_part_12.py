@@ -37,9 +37,9 @@ class ToxTests(BaseModel):
     wert: Concentration
 
 class Component(BaseModel):
-    name: str           #BCF_logkow
+    name: str           
     bcf: str            #BCF_logkow
-    logPow: str
+    logPow: str         #BCF_logkow
     ecotox: list[ToxTests]
     biologischabbaubar: str = Field( None,description="nein/nicht -> nicht abbaubar, leicht/ja -> schnell")
     casNo: str
@@ -120,4 +120,3 @@ def analyze_safety_data_sheet12(file_path: str, output_folder: str):
     print(f"Ergebnis gespeichert in {output_file}")
     print(f"Verwendete Tokens: {tokens_used}")
     return output_file
-
