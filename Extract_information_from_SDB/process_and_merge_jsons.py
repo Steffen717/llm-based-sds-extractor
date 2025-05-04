@@ -110,17 +110,16 @@ def parse_abschnitt_3(file_path):
             "bcf": replace_zero(comp.get("bcf")),
             "logKow": replace_zero(comp.get("logKow")),                                                
             # "bcf": format_concentration(
-                            #   normalize_operator(comp.get("bcf", {}).get("minoperator", "")),
                             #   replace_zero(comp.get("bcf", {}).get("min")),
+                            #   normalize_operator(comp.get("bcf", {}).get("minoperator", "")),
+                            #   replace_zero(comp.get("bcf", {}).get("max")),                            
                             #   normalize_operator(comp.get("bcf", {}).get("maxoperator", "")),
-                            #   replace_zero(comp.get("bcf", {}).get("max")),
-                            # 
             # ), 
             # "logKow": format_concentration(
-                            #   normalize_operator(comp.get("logKow", {}).get("minoperator", "")),
                             #   replace_zero(comp.get("logKow", {}).get("min")),
-                            #   normalize_operator(comp.get("logKow", {}).get("maxoperator", "")),    
-                            #   replace_zero(comp.get("logKow", {}).get("max")),            
+                            #   normalize_operator(comp.get("logKow", {}).get("minoperator", "")),
+                            #   replace_zero(comp.get("logKow", {}).get("max")), 
+                            #   normalize_operator(comp.get("logKow", {}).get("maxoperator", "")),               
             # ),
             "biolAbbaubar": replace_zero(comp.get("biolAbbaubar")),
         }
@@ -215,10 +214,6 @@ def parse_abschnitt_12(file_path, substance_lookup, gefaehrliche_inhaltsstoffe):
             })
     return eco_tox_data
 
-file_abschnitt_3 = r"C:\Users\Steffen Kades\Desktop\ausgabe\004.175-Boettcherin_Gelb_Boettcher_20220104\004.175-Boettcherin_Gelb_Boettcher_20220104_Abschnitt_3_extracted_result3.json"
-file_abschnitt_11 = r"C:\Users\Steffen Kades\Desktop\ausgabe\004.175-Boettcherin_Gelb_Boettcher_20220104\004.175-Boettcherin_Gelb_Boettcher_20220104_Abschnitt_11_extracted_result11.json"
-file_abschnitt_12 = r"C:\Users\Steffen Kades\Desktop\ausgabe\004.175-Boettcherin_Gelb_Boettcher_20220104\004.175-Boettcherin_Gelb_Boettcher_20220104_Abschnitt_12_extracted_result12.json"
-output_file = r"C:\Users\Steffen Kades\Desktop\ausgabe\004.175-Boettcherin_Gelb_Boettcher_20220104\jsonthingy.json"
 def process_json_data(file_abschnitt_3, file_abschnitt_11, file_abschnitt_12, output_file):
     result = create_empty_json()
     substances, substance_lookup, tox_data_3 = parse_abschnitt_3(file_abschnitt_3)
@@ -230,5 +225,3 @@ def process_json_data(file_abschnitt_3, file_abschnitt_11, file_abschnitt_12, ou
     result["ecoTox"].extend(eco_tox_data)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=4, ensure_ascii=False)
-
-process_json_data(file_abschnitt_3, file_abschnitt_11, file_abschnitt_12, output_file)  
