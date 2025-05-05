@@ -437,7 +437,9 @@ class ExcelViewer:
         # Excel und PDF laden
         self.load_excel(excel_path)
         self.load_pdf(pdf_path)
-
+        first = self.entries.get((1, 1))
+        if first:
+            self.root.after(50, lambda: (self.root.focus_force(), first.focus_set()))
         # Zellenanzahl speichern
         self.dataset_total_cells[os.path.basename(folder)] = self.current_total_cells
         self.update_current_dataset_label()
