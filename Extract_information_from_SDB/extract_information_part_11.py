@@ -35,7 +35,6 @@ class Component(BaseModel):
     name: str
     tox: list[ToxTests]
     casNo: str
-    sonstiges: str
 
 class DBAnalyst(BaseModel):
     components: list[Component]

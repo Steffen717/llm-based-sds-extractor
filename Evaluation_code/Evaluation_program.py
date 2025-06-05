@@ -10,7 +10,7 @@ from openpyxl.styles import PatternFill
 from excel_to_JSON import excel_to_json
 
 EXCEL_ROW_HEIGHT_PX = 15
-MIN_ROWS = 2
+MIN_ROWS = 1
 
 class ExcelViewer:
     def __init__(self, root):

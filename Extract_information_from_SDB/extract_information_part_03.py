@@ -20,9 +20,6 @@ load_dotenv()
 # OpenAI-Client initialisieren
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
-class Value(BaseModel):
-    min: float
-    unit: float
 
 class Concentration(BaseModel):
     min: float
@@ -65,7 +62,6 @@ class Component(BaseModel):
     mFactorAcute: float
     mFactorChronic: float
     ATEWerte: list[ATE]
-    sonstiges: str
 
 class DBAnalyst(BaseModel):
     components: list[Component]
@@ -101,7 +97,7 @@ def analyze_safety_data_sheet3(file_path, output_folder):
                         Wenn in der Konzentration nur ein Maximalwert vorhanden ist, darf auch ausschließlich ein Max-Operator stehen, für Min genauso. 
                         Zusätzlich vermerke die genaue Prozent-Einheit, falls Informationen dazu vorhanden sind (Gewicht%, Vol%, oder nur % oder ähnliches).
                         Notiere in Tabellen_Header_Konzentrations_Einheit, falls irgendwo im PDF etwas in der Art steht. Exakt das, was im Dokument steht. 
-                        Zusätzlich sollen Extrainformationen, die nicht in das restliche Schema passen, in „Sonstiges“ vermerkt werden. Vergiss keine Stoffe.
+                        Vergiss keine Stoffe.
                         Falls es spezifische Konzentrationslimits gibt, packe sie an die jeweilige Stelle im JSON-Schema. 
                         Falls weder Max noch Min einen Wert haben, ist es keiner und wird nicht dort eingeordnet.
                         Falls etwas keinen Wert hat, soll es im Schema leer gelassen werden oder ein leerer String sein."""

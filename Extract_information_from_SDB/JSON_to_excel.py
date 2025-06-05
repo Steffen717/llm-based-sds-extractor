@@ -152,3 +152,4 @@ def json_to_excel(input_file, output_file):
         # Zeilenhöhe automatisch anpassen (AutoFit simulieren)
         for row_index in worksheet.iter_rows():
             worksheet.row_dimensions[row_index[0].row].height = None
+

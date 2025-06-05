@@ -39,24 +39,41 @@ def normalize_unit(unit, header_unit):
     return header_unit if unit.strip() == "%" else unit.strip()
 
 def format_concentration(min_wert, min_operator, max_wert, max_operator, unit):
-    if min_wert == 0:
-        if min_operator not in [">", ">="]:
+    def to_float(val):
+        try:
+            return float(val)
+        except (TypeError, ValueError):
+            return None
+
+    min_val = to_float(min_wert)
+    max_val = to_float(max_wert)
+    unit = unit.strip() if unit else ""
+
+    if min_val is None and max_val is None:
+        return ""
+
+    if min_val is not None and (max_val is None or max_val == 0):
+        if not min_operator and max_operator:
+            min_operator = max_operator
+        if min_val == 0 and min_operator not in [">", ">="]:
             min_operator = ""
-    if max_wert == 0 and max_operator == "":
-        return f"{min_operator}{min_wert}".strip()
-    if max_wert == 0:
-        return f"{min_operator}{min_wert}".strip()
-    if max_operator == "" and max_wert != 0:
-        max_operator = min_operator
-    if min_wert is not None and max_wert is not None:
-        if min_wert == max_wert:
-            return f"{min_operator}{min_wert}".strip()
-        return f"{min_operator}{min_wert} - {max_operator}{max_wert}".strip()
-    if min_wert is not None:
-        return f"{min_operator}{min_wert}".strip()
-    if max_wert is not None:
-        return f"{max_operator}{max_wert}".strip()
-    return ""
+        return f"{min_operator}{min_val} {unit}".strip()
+
+    if max_val is not None and (min_val is None or min_val == 0):
+        if not max_operator and min_operator:
+            max_operator = min_operator
+        if max_val == 0 and max_operator not in ["<", "<="]:
+            max_operator = ""
+        return f"{max_operator}{max_val} {unit}".strip()
+
+    if min_val == max_val:
+        operator = min_operator if min_operator else max_operator
+        return f"{operator}{min_val} {unit}".strip()
+
+    return f"{min_operator}{min_val} - {max_operator}{max_val} {unit}".strip()
+
+
+
 
 def replace_zero(value, is_concentration=False):
     if value == 0 and not is_concentration:

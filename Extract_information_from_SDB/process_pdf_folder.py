@@ -44,34 +44,77 @@ def extract_sections_from_folder(input_folder, output_folder, failed_folder):
         os.makedirs(pdf_output_folder, exist_ok=True)
 
         # Abschnitt 3
+# Abschnitt 3
         success3 = extract_between_words(
             pdf_path,
-            "Abschnitt3", "Erste-Hilfe-Maßnahmen",
+            "ABSCHNITT 3: Zusammensetzung/Angaben zu Bestandteilen", "ABSCHNITT 4: Erste-Hilfe Maßnahmen",
             pdf_output_folder,
-            ["Zusammensetzung", "ABSCHNITT3", "Angaben zu Bestandteilen", "3.2 Gemische", "SECTION 3", "ANGABEN ZU BESTANDTEILEN", "ABSCHNITT 3: Zusammensetzung/Angaben zu Bestandteilen"],
-            ["ABSCHNITT4", "Erste-Hilfe-Maßnahmen", "SECTION 4", "ERSTE-HILFE-MASSNAHMEN", "ABSCHNITT 4: Erste-Hilfe Maßnahmen"],
+            [
+                "ABSCHNITT 3: Zusammensetzung/Angaben zu Bestandteilen",
+                "Angaben zu Bestandteilen",
+                "3.2 Gemische",
+                "SECTION 3",
+                "ABSCHNITT3",
+                "Zusammensetzung"
+            ],
+            [
+                "ABSCHNITT 4: Erste-Hilfe Maßnahmen",
+                "Erste-Hilfe-Maßnahmen",
+                "ERSTE-HILFE-MASSNAHMEN",
+                "ABSCHNITT4",
+                "SECTION 4"
+            ],
             "_Abschnitt_3_extracted.pdf"
         )
 
         # Abschnitt 11
         success11 = extract_between_words(
             pdf_path,
-            "ABSCHNITT 11: Toxikologische Angaben", "ABSCHNITT 12",
+            "ABSCHNITT 11: Toxikologische Angaben", "ABSCHNITT 12: Umweltbezogene Angaben",
             pdf_output_folder,
-            ["Abschnitt 11", "Toxikologische Angaben", "ANGABEN ZUR TOXIKOLOGIE", "Toxikologische Eigenschaften", "ABSCHNITT 11:", "11. ANGABEN ZUR TOXIKOLOGIE", "12. ANGABEN ZUR ÖKOLOGIE", "SECTION 11"],
-            ["ABSCHNITT12", "Umweltbezogene Angaben", "ABSCHNITT 12:", "ANGABEN ZUR ÖKOLOGIE", "12.1", "SECTION 12"],
+            [
+                "ABSCHNITT 11: Toxikologische Angaben",
+                "11. ANGABEN ZUR TOXIKOLOGIE",
+                "Toxikologische Eigenschaften",
+                "ANGABEN ZUR TOXIKOLOGIE",
+                "Toxikologische Angaben",
+                "Abschnitt 11",
+                "SECTION 11"
+            ],
+            [
+                "ANGABEN ZUR ÖKOLOGIE",
+                "Umweltbezogene Angaben",
+                "ABSCHNITT12"
+                "SECTION 12",
+                "12.1"
+            ],
             "_Abschnitt_11_extracted.pdf"
         )
 
         # Abschnitt 12
         success12 = extract_between_words(
             pdf_path,
-            "ABSCHNITT 12: Umweltbezogene Angaben", "Abschnitt 13",
+            "ABSCHNITT 12: Umweltbezogene Angaben", "13. HINWEISE ZUR ENTSORGUNG",
             pdf_output_folder,
-            ["Umweltbezogene Angaben", "12. ANGABEN ZUR ÖKOLOGIE", "ANGABEN ZUR ÖKOLOGIE", "Ökotoxische Wirkungen", "ABSCHNITT 12", "SECTION 12"],
-            ["SECTION 13", "Entsorgung von Produkt", "Hinweise zur Entsorgung", "HINWEISE ZUR ENTSORGUNG", "13. HINWEISE ZUR ENTSORGUNG"],
+            [
+                "12. ANGABEN ZUR ÖKOLOGIE",
+                "Umweltbezogene Angaben",
+                "Ökotoxische Wirkungen",
+                "ANGABEN ZUR ÖKOLOGIE",
+                "ABSCHNITT 12",
+                "SECTION 12"
+            ],
+            [
+                "13. HINWEISE ZUR ENTSORGUNG",
+                "Hinweise zur Entsorgung",
+                "Entsorgung von Produkt",
+                "HINWEISE ZUR ENTSORGUNG",
+                "Abschnitt 13"
+                "SECTION 13"
+            ],
             "_Abschnitt_12_extracted.pdf"
         )
+
 
         if not (success3 and success11 and success12):
             shutil.copy2(pdf_path, os.path.join(failed_folder, file_name))
