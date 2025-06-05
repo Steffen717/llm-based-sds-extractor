@@ -61,12 +61,7 @@ class DBAnalyst(BaseModel):
 image_folder = r"C:\Users\Steffen Kades\Desktop\bilderteil1"
 image_paths = sorted(glob.glob(os.path.join(image_folder, "*.png")))
 
-res = ollama.chat(
-    model="gemma3:27b-it-qat",
-    messages=[
-        {
-            "role": "user",
-            "content":"""Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. Extrahiere die Daten aus Abschnitt 3 und füge sie in das JSON-Schema ein, der Inhalt ist im Kontext aufgeführt.
+Prompt = """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. Extrahiere die Daten aus Abschnitt 3 und füge sie in das JSON-Schema ein, der Inhalt ist im Kontext aufgeführt.
                         Jeder Stoff im Gemisch hat nur eine Konzentration. Achte darauf, immer alle Namen vollständig aufzuführen. 
                         Jeweils für den Maximalwert mit einem Vorzeichen und einen für den Minimalwert mit einem Vorzeichen.
                         Wenn in der Konzentration nur ein Maximalwert vorhanden ist, darf auch ausschließlich ein Max-Operator stehen, für Min genauso. 
@@ -77,7 +72,8 @@ res = ollama.chat(
                         Falls weder Max noch Min einen Wert haben, ist es keiner und wird nicht dort eingeordnet.
                         Falls etwas keinen Wert hat, soll es im Schema leer gelassen werden oder ein leerer String oder eine 0 sein. 
                         WICHTIG ich brauche in der classification liste immer die vollständigen Wertepaare H-nummer und die kategorie wie Acute Tox.4 mit der H nummer IMMER!!!
-                        Im Folgenden Habe ich noch den Text der in den Bildern bin extrahiert Kontext: ABSCHNITT 3: Zusammensetzung/Angaben zu Bestandteilen
+                        """
+Kontext = """ABSCHNITT 3: Zusammensetzung/Angaben zu Bestandteilen
 3.2.
 Gemische
 *
@@ -167,7 +163,15 @@ Vollständiger Wortlaut der Einstufungen: siehe unter Abschnitt 16
 Kennzeichnung der Inhaltsstoffe gemäß Verordnung EG Nr. 648/2004
 
 5 - 15 %
-nichtionische Tenside""",
+nichtionische Tenside"""
+
+res = ollama.chat(
+    model="gemma3:27b-it-qat",
+    messages=[
+        {
+            "role": "user",
+            "content":"""{Prompt}
+            Im Folgenden Habe ich noch den Text der in den Bildern bin extrahiert Kontext: {Kontext}""",
             "images": image_paths,
         }
     ],

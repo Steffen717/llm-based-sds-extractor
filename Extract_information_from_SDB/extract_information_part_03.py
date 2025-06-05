@@ -26,7 +26,7 @@ class Concentration(BaseModel):
     minoperator: str
     max: float
     maxoperator: str
-    unit: str = Field(None, description="Die genaue Einheit im Kontext der Tabelle, falls es in einer Tabelle steht")
+    unit: str = Field(None, description="Die genaue Einheit im Kontext der Tabelle, falls es in der Tabelle steht")
 
 class EUHNummern(BaseModel):
     Nummer: str = Field(None, description="EUH-Nummern, wenn vorhanden")
@@ -43,7 +43,7 @@ class Concentrationlimit(BaseModel):
 class ATE(BaseModel):
     expositionsdauer: float
     expositionsdauer_einheit: str
-    expositionsweg: str = Field( None,description="Wie wird es verabreicht: inhalativ (einatmen), inhalativ (Staub/Nebel),inhalativ (Gas), inhalativ (Dampf), dermal, oral (schlucken). Bei 'einatmen' verwende 'inhalativ', bei 'schlucken' verwende 'oral'.")
+    expositionsweg: str = Field( None,description="Wie wird es verabreicht: inhalativ (einatmen), inhalativ (Staub/Nebel), inhalativ (Gas), inhalativ (Dampf), dermal, oral (schlucken). Bei 'einatmen' verwende 'inhalativ', bei 'schlucken' verwende 'oral'.")
     methode: str
     spezies: str
     typ: str
