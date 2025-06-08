@@ -8,10 +8,8 @@ in einer JSON-Datei im angegebenen Ausgabeordner gespeichert.
 
 import os
 import json
-import re
 from openai import OpenAI
 from dotenv import load_dotenv
-import time
 from pydantic import BaseModel, Field
 
 # Laden der Umgebungsvariablen

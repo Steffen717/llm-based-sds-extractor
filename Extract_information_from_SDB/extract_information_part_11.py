@@ -4,7 +4,6 @@ Das Gleiche wier für Teil 3 mit Modell angepasst an Teil 11 des pdf
 
 import os
 import json
-import time
 from openai import OpenAI
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
