@@ -47,7 +47,6 @@ def format_concentration(min_wert, min_operator, max_wert, max_operator, unit):
 
     min_val = to_float(min_wert)
     max_val = to_float(max_wert)
-    unit = unit.strip() if unit else ""
 
     if min_val is None and max_val is None:
         return ""
@@ -57,20 +56,20 @@ def format_concentration(min_wert, min_operator, max_wert, max_operator, unit):
             min_operator = max_operator
         if min_val == 0 and min_operator not in [">", ">="]:
             min_operator = ""
-        return f"{min_operator}{min_val} {unit}".strip()
+        return f"{min_operator}{min_val}".strip()
 
     if max_val is not None and (min_val is None or min_val == 0):
         if not max_operator and min_operator:
             max_operator = min_operator
         if max_val == 0 and max_operator not in ["<", "<="]:
             max_operator = ""
-        return f"{max_operator}{max_val} {unit}".strip()
+        return f"{max_operator}{max_val}".strip()
 
     if min_val == max_val:
         operator = min_operator if min_operator else max_operator
-        return f"{operator}{min_val} {unit}".strip()
+        return f"{operator}{min_val}".strip()
 
-    return f"{min_operator}{min_val} - {max_operator}{max_val} {unit}".strip()
+    return f"{min_operator}{min_val} - {max_operator}{max_val}".strip()
 
 
 
@@ -242,3 +241,10 @@ def process_json_data(file_abschnitt_3, file_abschnitt_11, file_abschnitt_12, ou
     result["ecoTox"].extend(eco_tox_data)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=4, ensure_ascii=False)
+        
+file_abschnitt_3 =r"C:\Users\Steffen Kades\Desktop\Blatt 26\3.2.json"
+file_abschnitt_11 = r"C:\Users\Steffen Kades\Desktop\Blatt 26\11,2.json"
+file_abschnitt_12 = r"C:\Users\Steffen Kades\Desktop\Blatt 26\12,3.json"
+output_file    = r"C:\Users\Steffen Kades\Desktop\Blatt 26\final2.2.json"
+        
+process_json_data(file_abschnitt_3, file_abschnitt_11, file_abschnitt_12, output_file)

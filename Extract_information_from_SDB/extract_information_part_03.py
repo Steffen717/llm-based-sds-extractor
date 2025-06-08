@@ -65,7 +65,7 @@ class Component(BaseModel):
 
 class DBAnalyst(BaseModel):
     components: list[Component]
-    Tabellen_header_Konzentrations_Einheit: str = Field(None, description="Gibt die genaue Konzentrationseinheit an, die im Tabellenkopf angegeben ist, wie vol%, gewicht% etc., oder im PDF angegeben ist, falls vorhanden.")
+    Tabellen_header_Konzentrations_Einheit: str = Field(None, description="Gibt die genaue Konzentrationseinheit an, die im Tabellenkopf angegeben ist, wie Vol%, Gewicht% etc., oder im PDF angegeben ist, falls vorhanden.")
 
 def analyze_safety_data_sheet3(file_path, output_folder):
     # Output-Ordner erstellen

@@ -43,15 +43,10 @@ class Component(BaseModel):
 class DBAnalyst(BaseModel):
     components: list[Component]
 
-image_folder = r"C:\Users\Steffen Kades\Desktop\BilderTeil3"
+image_folder = r"C:\Users\Steffen Kades\Desktop\Blatt 26\Teil12"
 image_paths = sorted(glob.glob(os.path.join(image_folder, "*.png")))
 
-res = ollama.chat(
-    model="gemma3:27b-it-qat",
-    messages=[
-        {
-            "role": "user",
-            "content":"""Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. 
+Prompt = """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. 
                                 Extrahiere die Daten aus Abschnitt 12 welcher im Kontext angegeben ist und füge sie in das JSON-Schema ein. 
                                 Ich will, dass du keine Veränderungen vornimmst. Falls ein Feld leer ist, setze einen leeren String und bei Zahlen (null) und füge alles richtig in das JSON-Schema ein. 
                                 Füge bei Konzentration keine zusätzlichen Sachen ein, wenn nur ein Wert vorhanden ist, ist er nach dem Vorzeichen als Max oder Min einzuordnen. Mache keine Veränderungen, alles soll exakt so wie im PDF sein. 
@@ -63,10 +58,11 @@ res = ollama.chat(
                                 Trage ALLE Daten, die im PDF vorhanden sind, und lasse nichts aus. 
                                 In Ecotox sollen alle Teile stehen, die Informationen, welche für Ecotox relevant sind und in das Schema passen, beinhalten. Wenn es für chronisch oder anderes ist, führe es trotzdem auf. 
                                 Wenn ein Feld nichts passt füge einen leeren String ein
-                                Im Folgenden Habe ich noch den Text der in den Bildern bin extrahiert Kontext: ABSCHNITT 12: Umweltbezogene Angaben
+                                Im Folgenden Habe ich noch den Text der in den Bildern bin extrahiert Kontext: ABSCHNITT 12: Umweltbezogene Angaben"""
+Kontext = """ABSCHNITT 12: Umweltbezogene Angaben
 
-Einstufung gemäß Verordnung (EG) Nr. 1272/2008 [CLP]
-Nicht in die Kanalisation oder Gewässer gelangen lassen.
+Einstufung gemäß Verordnung (EG) Nr. 1272/2008 [CLP]     
+Nicht in die Kanalisation oder Gewässer gelangen lassen. 
 12.1. Toxizität
 *
 Sehr giftig für Wasserorganismen.
@@ -85,7 +81,7 @@ Daphnientoxizität, EC50: 100 mg/L   (48 h)
 Algentoxizität, ErC50    (96 h)
 
 Langzeit Ökotoxizität
-Giftig für Wasserorganismen, mit langfristiger Wirkung.
+Giftig für Wasserorganismen, mit langfristiger Wirkung.  
 
 12.2. Persistenz und Abbaubarkeit
 *
@@ -110,7 +106,14 @@ Die Stoffe im Gemisch erfüllen nicht die PBT/vPvB Kriterien gemäß REACH, Anha
 Es liegen keine Informationen vor.
 12.7. Andere schädliche Wirkungen
 
-Es liegen keine Informationen vor.""",
+Es liegen keine Informationen vor."""
+
+res = ollama.chat(
+    model="gemma3:27b-it-qat",
+    messages=[
+        {
+            "role": "user",
+            "content":"""{Prompt} Im Folgenden habe ich noch den Text der in den Bildern ist extrahiert nutze ihn um die Daten richtig zu extrahieren er kommt hier: {Kontext}""",
             "images": image_paths,
         }
     ],

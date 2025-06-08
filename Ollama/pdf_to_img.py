@@ -1,7 +1,7 @@
 import fitz  # PyMuPDF
 import os
 
-def pdf_to_images(pdf_path, output_folder=r"C:\Users\Steffen Kades\Desktop\BilderTeil3"):
+def pdf_to_images(pdf_path, output_folder=r"C:\Users\Steffen Kades\Desktop\14\Teil12"):
     os.makedirs(output_folder, exist_ok=True)
     doc = fitz.open(pdf_path)
 
@@ -17,4 +17,4 @@ def pdf_to_images(pdf_path, output_folder=r"C:\Users\Steffen Kades\Desktop\Bilde
     return image_paths
 
 # Beispielaufruf
-pdf_to_images(r"C:\Users\Steffen Kades\Desktop\results\Groß\026.1950019_Grotanol_SR2___02.11.2022\026.1950019_Grotanol_SR2___02.11.2022_Abschnitt_12_extracted.pdf")
+pdf_to_images(r"C:\Users\Steffen Kades\Desktop\14\014.16-Natriumhypochloritlösung_Carl Roth_Abschnitt_12_extracted.pdf")

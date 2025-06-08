@@ -34,15 +34,10 @@ class Component(BaseModel):
 class DBAnalyst(BaseModel):
     components: list[Component]
 
-image_folder = r"C:\Users\Steffen Kades\Desktop\BilderTeil2"
+image_folder = r"C:\Users\Steffen Kades\Desktop\Blatt 26\Teil11"
 image_paths = sorted(glob.glob(os.path.join(image_folder, "*.png")))
 
-res = ollama.chat(
-    model="gemma3:27b-it-qat",
-    messages=[
-        {
-            "role": "user",
-            "content":"""Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. 
+Prompt = """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. 
                                     Extrahiere aus Abschnitt 11 des inhaltes im Kontext angegebenen toxikologischen Daten für die inhalativen,
                                     dermalen und oralen Werte sowie die ATE (Akute Toxizität) und füge sie in das JSON-Schema ein. 
                                     Falls vorhanden, ansonsten füge sie nicht ins JSON-Schema ein. 
@@ -56,7 +51,8 @@ res = ollama.chat(
                                     Führe ALLE Stoffe auf, bei denen es zutrifft, auch wenn einiges doppelt ist. Wenn ein Stoff in der gleichen Kategorie mehrmals etwas stehen hat und sich nur ein Wert ändert,
                                     kann es also mehrmals oral, dermal und inhalativ pro Stoff existieren. 
                                     Bei inhalativ soll auch Staub, Nebel, Gas, Dampf immer genau notiert werden im Expositionsweg.
-                                    Im Folgenden Habe ich noch den Text der in den Bildern bin extrahiert Kontext: ABSCHNITT 11: Toxikologische Angaben
+                                    Im Folgenden Habe ich noch den Text der in den Bildern bin extrahiert Kontext: ABSCHNITT 11: Toxikologische Angaben"""
+Kontext = """ ABSCHNITT 11: Toxikologische Angaben
 11.1. Angaben zu den Gefahrenklassen im Sinne der Verordnung (EG) Nr. 1272/2008
 *
 
@@ -104,7 +100,7 @@ Kann vermutlich genetische Defekte verursachen.
 Kann Krebs erzeugen.
 
 
-Spezifische Zielorgan-Toxizität bei einmaliger Exposition; Spezifische Zielorgan-Toxizität bei wiederholter
+Spezifische Zielorgan-Toxizität bei einmaliger Exposition; Spezifische Zielorgan-Toxizität bei wiederholter       
 Exposition
 Kann die Organe schädigen bei längerer oder wiederholter Exposition.
 
@@ -123,7 +119,7 @@ Bearbeitungsdatum: 02.11.2022
 DE
 Ausgabedatum: 02.11.2022
 Seite 7 / 11
-Spezifische Zielorgan-Toxizität (wiederholte Exposition)
+Spezifische Zielorgan-Toxizität (wiederholte Exposition) 
 
 Aspirationsgefahr
 Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.
@@ -145,7 +141,14 @@ Carc. 1B
 
 Endokrinschädliche Eigenschaften
 
-Es liegen keine Informationen vor.""",
+Es liegen keine Informationen vor."""
+
+res = ollama.chat(
+    model="gemma3:27b-it-qat",
+    messages=[
+        {
+            "role": "user",
+            "content":"""{Prompt}  Im Folgenden habe ich noch den Text der in den Bildern ist extrahiert nutze ihn um die Daten richtig zu extrahieren er kommt hier: {Kontext}""",
             "images": image_paths,
         }
     ],
