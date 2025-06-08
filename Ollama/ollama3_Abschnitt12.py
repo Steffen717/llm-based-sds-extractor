@@ -38,7 +38,6 @@ class Component(BaseModel):
     ecotox: list[ToxTests]
     biologischabbaubar: str = Field( ...,description="nein/nicht -> nicht abbaubar, leicht/ja -> schnell")
     casNo: str
-    sonstiges: str
 
 class DBAnalyst(BaseModel):
     components: list[Component]

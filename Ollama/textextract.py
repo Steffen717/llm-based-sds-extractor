@@ -1,3 +1,7 @@
+"""
+Einfaches Skript zum Extrahieren von Text aus einer PDF-Datei mit PyMuPDF (fitz).
+"""
+
 import fitz  # PyMuPDF
 
 def extract_text_from_pdf(pdf_path):

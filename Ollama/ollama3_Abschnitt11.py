@@ -29,7 +29,6 @@ class Component(BaseModel):
     name: str
     tox: list[ToxTests]
     casNo: str
-    sonstiges: str
 
 class DBAnalyst(BaseModel):
     components: list[Component]
@@ -52,7 +51,7 @@ Prompt = """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern.
                                     kann es also mehrmals oral, dermal und inhalativ pro Stoff existieren. 
                                     Bei inhalativ soll auch Staub, Nebel, Gas, Dampf immer genau notiert werden im Expositionsweg.
                                     Im Folgenden Habe ich noch den Text der in den Bildern bin extrahiert Kontext: ABSCHNITT 11: Toxikologische Angaben"""
-Kontext = """ ABSCHNITT 11: Toxikologische Angaben
+Kontext = """ABSCHNITT 11: Toxikologische Angaben
 11.1. Angaben zu den Gefahrenklassen im Sinne der Verordnung (EG) Nr. 1272/2008
 *
 
