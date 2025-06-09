@@ -1,3 +1,7 @@
+"""
+Die folgende Funktion konvertiert eine JSON-Datei mit gefährlichen Inhaltsstoffen in eine Excel-Datei.
+"""
+
 import pandas as pd
 import json
 from openpyxl import load_workbook

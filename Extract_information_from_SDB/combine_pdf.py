@@ -1,3 +1,7 @@
+"""
+Dieses Skript kombiniert mehrere PDF-Dateien zu einer einzigen PDF-Datei.
+"""
+
 import fitz
 import os
 

@@ -1,3 +1,7 @@
+"""
+Dieser code ruft die Funktion extract_sections_from_folder auf, um die Abschnitte aus den PDFs in einem Ordner zu extrahieren und in einem anderen Ordner zu speichern.
+"""
+
 import os
 from process_pdf_folder import extract_sections_from_folder
 

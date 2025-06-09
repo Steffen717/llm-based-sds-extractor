@@ -1,3 +1,7 @@
+"""
+Dieser code wandelt die xlsx-Datei mit den gefährlichen Inhaltsstoffen in eine JSON-Datei um.
+"""
+
 import pandas as pd
 import json
 import re

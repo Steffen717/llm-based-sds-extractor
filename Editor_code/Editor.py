@@ -1,3 +1,7 @@
+"""
+Dieses Skript ist ein Excel-Viewer, der es ermöglicht, Excel-Dateien zu laden, zu bearbeiten und die Ergebnisse in JSON zu exportieren. Es bietet eine grafische Benutzeroberfläche mit Funktionen zum Navigieren durch Datensätze, Anzeigen von PDF-Dateien und Verwalten von Fehlern.
+"""
+
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from openpyxl import load_workbook, Workbook
