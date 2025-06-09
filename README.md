@@ -97,7 +97,7 @@ python Ollama/pdf_to_img.py
 Damit werden die PDFs in Bilder umgewandelt und im angegebenen Ordner platziert.
 
 ```bash
-python Ollama/textextract.py
+python Ollama/text_extract.py
 ```
 Gibt den Text aus, der sich im PDF befindet.
 
