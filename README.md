@@ -102,9 +102,9 @@ python Ollama/text_extract.py
 Gibt den Text aus, der sich im PDF befindet.
 
 ```bash
-python Ollama/ollama_Abschnitt3.py
-python Ollama/ollama_Abschnitt11.py
-python Ollama/ollama_Abschnitt12.py
+python Ollama/ollama_Abschnitt3.py > Abschnitt3.json
+python Ollama/ollama_Abschnitt11.py > Abschnitt11.json
+python Ollama/ollama_Abschnitt12.py > Abschnitt12.json
 ```
 Die Skripte sind jeweils für die angegebenen Abschnitte gedacht. Hierbei müssen jeweils der Bilderordner und der Prompt aus textextract angegeben werden.
 
