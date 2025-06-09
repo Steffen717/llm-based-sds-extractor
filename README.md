@@ -79,7 +79,7 @@ python Editor_code/Editor.py
 Dann öffnet sich ein Dialogfenster in dem der erstelle ordner vom vorherigen code ausgewählt werden muss
 
 
-### Ollama
+## Ollama
 
 Als letztes gibt es noch den Ollama Ordner in dem man das gleiche noch mit Ollama testen kann aber dabei müssen die zwischenschritte manuell gemacht werden.
 
