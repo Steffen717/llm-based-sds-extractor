@@ -89,7 +89,7 @@ Als letztes gibt es noch den Ollama Ordner in dem man das gleiche noch mit Ollam
 - Bei Verwendung der API-Aufrufe muss Ollama aktiv sein.  
 - Es muss ein vision-fähiges Modell benutzt werden, damit die Bildverarbeitung funktioniert.
 
-mit
+
 ### Ausführen von Ollama Teil
 ```bash
 python Ollama/pdf_to_img.py
