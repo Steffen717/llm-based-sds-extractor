@@ -6,9 +6,9 @@ import os
 from process_pdf_folder import extract_sections_from_folder
 
 def main():
-    input_folder = r"C:\Users\Steffen Kades\Desktop\Neuer Ordner (9)"
-    output_folder = r"C:\Users\Steffen Kades\Desktop\Neuer Ordner (10)"
-    failed_folder = r"C:\Users\Steffen Kades\Desktop\Neuer Ordner (11)"
+    input_folder = ""
+    output_folder = ""
+    failed_folder = ""
     
     extract_sections_from_folder(input_folder, output_folder, failed_folder)
 

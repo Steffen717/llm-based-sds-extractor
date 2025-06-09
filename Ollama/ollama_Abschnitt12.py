@@ -58,54 +58,7 @@ Prompt = """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern.
                                 In Ecotox sollen alle Teile stehen, die Informationen, welche für Ecotox relevant sind und in das Schema passen, beinhalten. Wenn es für chronisch oder anderes ist, führe es trotzdem auf. 
                                 Wenn ein Feld nichts passt füge einen leeren String ein
                                 Im Folgenden Habe ich noch den Text der in den Bildern bin extrahiert Kontext: ABSCHNITT 12: Umweltbezogene Angaben"""
-Kontext = """ABSCHNITT 12: Umweltbezogene Angaben
-
-Einstufung gemäß Verordnung (EG) Nr. 1272/2008 [CLP]     
-Nicht in die Kanalisation oder Gewässer gelangen lassen. 
-12.1. Toxizität
-*
-Sehr giftig für Wasserorganismen.
-
-Pyridin-2-thiol-1-oxid, Natriumsalz
-Fischtoxizität, LC50, Oncorhynchus mykiss (Regenbogenforelle): 0,0066 mg/L   (96 h)
-Daphnientoxizität, EC50, Daphnia magna: 0,022 mg/L   (48 h)
-Algentoxizität, ErC50, Selenastrum capricornutum: 0,46 mg/L
-Reaktionsprodukte von Paraformaldehyd und 2-Hydroxypropylamim (Verhältnis 3:2); [MBO]
-Fischtoxizität, LC50, Danio rerio (Zebrabärbling): 71 mg/L   (96 h)
-Daphnientoxizität, EC50, Daphnia pulex (Wasserfloh): 28 mg/L   (48 h)
-Algentoxizität, ErC50, Pseudokirchneriella subcapitata: 2,95 mg/L   (72 h)
-2-(2-butoxyethoxy)ethanol
-Fischtoxizität, LC50: 1300 mg/L   (96 h)
-Daphnientoxizität, EC50: 100 mg/L   (48 h)
-Algentoxizität, ErC50    (96 h)
-
-Langzeit Ökotoxizität
-Giftig für Wasserorganismen, mit langfristiger Wirkung.  
-
-12.2. Persistenz und Abbaubarkeit
-*
-Reaktionsprodukte von Paraformaldehyd und 2-Hydroxypropylamim (Verhältnis 3:2); [MBO]
-: 89,8    (28 Tag(e)); Bewertung Leicht biologisch abbaubar (nach OECD-Kriterien)
-Methode:  OECD 306
-12.3. Bioakkumulationspotenzial
-*
-Reaktionsprodukte von Paraformaldehyd und 2-Hydroxypropylamim (Verhältnis 3:2); [MBO]
-Verteilungskoeffizient n-Octanol/Wasser: -0,043
-2-(2-butoxyethoxy)ethanol
-Verteilungskoeffizient n-Octanol/Wasser:  1
-
-Biokonzentrationsfaktor (BCF)
-Toxikologische Daten liegen keine vor.
-12.4. Mobilität im Boden
-Toxikologische Daten liegen keine vor.
-12.5. Ergebnisse der PBT- und vPvB-Beurteilung
-Die Stoffe im Gemisch erfüllen nicht die PBT/vPvB Kriterien gemäß REACH, Anhang XIII.
-12.6. Endokrinschädliche Eigenschaften
-
-Es liegen keine Informationen vor.
-12.7. Andere schädliche Wirkungen
-
-Es liegen keine Informationen vor."""
+Kontext = """"""
 
 res = ollama.chat(
     model="gemma3:27b-it-qat",

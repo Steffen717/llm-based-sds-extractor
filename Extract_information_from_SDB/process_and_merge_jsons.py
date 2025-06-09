@@ -242,9 +242,3 @@ def process_json_data(file_abschnitt_3, file_abschnitt_11, file_abschnitt_12, ou
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=4, ensure_ascii=False)
         
-file_abschnitt_3 =r"C:\Users\Steffen Kades\Desktop\Blatt 26\3.2.json"
-file_abschnitt_11 = r"C:\Users\Steffen Kades\Desktop\Blatt 26\11,2.json"
-file_abschnitt_12 = r"C:\Users\Steffen Kades\Desktop\Blatt 26\12,3.json"
-output_file    = r"C:\Users\Steffen Kades\Desktop\Blatt 26\final2.2.json"
-        
-process_json_data(file_abschnitt_3, file_abschnitt_11, file_abschnitt_12, output_file)

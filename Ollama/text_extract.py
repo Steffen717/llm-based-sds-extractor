@@ -15,8 +15,3 @@ def extract_text_from_pdf(pdf_path):
         text += page.get_text()         # Text der Seite hinzufügen
 
     return text
-
-if __name__ == "__main__":
-    pdf_file = r"C:\Users\Steffen Kades\Desktop\Blatt 26\026.1950019_Grotanol_SR2___02.11.2022_Abschnitt_11_extracted.pdf"
-    extracted_text = extract_text_from_pdf(pdf_file)
-    print(extracted_text)

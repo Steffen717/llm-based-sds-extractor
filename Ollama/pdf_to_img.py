@@ -5,7 +5,7 @@ Erstellt alle Seiten eines PDFs als Bilder und speichert sie in einem angegebene
 import fitz  # PyMuPDF
 import os
 
-def pdf_to_images(pdf_path, output_folder=r"C:\Users\Steffen Kades\Desktop\Blatt 26\Teil12"):
+def pdf_to_images(pdf_path, output_folder):
     os.makedirs(output_folder, exist_ok=True)
     doc = fitz.open(pdf_path)
 
@@ -19,6 +19,3 @@ def pdf_to_images(pdf_path, output_folder=r"C:\Users\Steffen Kades\Desktop\Blatt
         print(f"Seite {page_num + 1} als Bild gespeichert: {image_path}")
 
     return image_paths
-
-# Beispielaufruf
-pdf_to_images(r"C:\Users\Steffen Kades\Desktop\Blatt 26\026.1950019_Grotanol_SR2___02.11.2022_Abschnitt_12_extracted.pdf")

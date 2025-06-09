@@ -151,6 +151,3 @@ def json_to_excel(input_file, output_file):
 
         for row_index in worksheet.iter_rows():
             worksheet.row_dimensions[row_index[0].row].height = None
-input_file =r"C:\Users\Steffen Kades\Desktop\Blatt11\final.json"
-output_file =r"C:\Users\Steffen Kades\Desktop\Blatt11\final.xlsx"
-json_to_excel(input_file, output_file)
