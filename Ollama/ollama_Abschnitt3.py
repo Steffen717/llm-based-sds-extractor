@@ -7,6 +7,7 @@ in einer JSON-Datei im angegebenen Ausgabeordner gespeichert.
 """
 
 import ollama
+import sys
 from pydantic import BaseModel, Field
 import json
 import os
@@ -81,8 +82,7 @@ Prompt = """Du bist ein Experte beim Analysieren von Sicherheitsdatenblättern. 
                         Falls weder Max noch Min einen Wert haben, ist es keiner und wird nicht dort eingeordnet.
                         Falls etwas keinen Wert hat, soll es im Schema leer gelassen werden oder ein leerer String oder eine 0 sein. 
                         WICHTIG ich brauche in der classification liste immer die vollständigen Wertepaare H-nummer und die kategorie wie Acute Tox.4 mit der H nummer IMMER!!!"""
-Kontext = """
-"""
+Kontext = """"""
 
 res = ollama.chat(
     model="gemma3:27b-it-qat",
@@ -99,4 +99,5 @@ res = ollama.chat(
              "num_ctx": 30000}
 )
 
-print(res['message']['content'])
+with open(sys.argv[1], "w", encoding="utf-8") as result_file:
+    json.dump({"message":json.loads(res['message']['content'])}, result_file, indent=4, ensure_ascii=False)

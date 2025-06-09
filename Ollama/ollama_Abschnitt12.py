@@ -4,7 +4,7 @@ import ollama
 import json
 import os
 import glob
-
+import sys
 import ollama
 from pydantic import BaseModel, Field
 import json
@@ -74,4 +74,5 @@ res = ollama.chat(
              "num_ctx": 30000}
 )
 
-print(res['message']['content'])
+with open(sys.argv[1], "w", encoding="utf-8") as result_file:
+    json.dump({"message":json.loads(res['message']['content'])}, result_file, indent=4, ensure_ascii=False)
