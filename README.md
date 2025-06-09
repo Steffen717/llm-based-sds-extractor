@@ -79,17 +79,17 @@ python Editor_code/Editor.py
 Dann öffnet sich ein Dialogfenster in dem der erstelle ordner vom vorherigen code ausgewählt werden muss
 
 
-####
-Ollama
+## Ollama
+
 Als letztes gibt es noch den Ollama Ordner in dem man das gleiche noch mit Ollama testen kann aber dabei müssen die zwischenschritte manuell gemacht werden.
 
-#### Voraussetzungen
+### Voraussetzungen
 
 - Ollama von [https://ollama.com/](https://ollama.com/) installieren und das jeweilige Modell downloaden.  
 - Bei Verwendung der API-Aufrufe muss Ollama aktiv sein.  
 - Es muss ein vision-fähiges Modell benutzt werden, damit die Bildverarbeitung funktioniert.
 
-mit
+
 ### Ausführen von Ollama Teil
 ```bash
 python Ollama/pdf_to_img.py
@@ -102,9 +102,9 @@ python Ollama/text_extract.py
 Gibt den Text aus, der sich im PDF befindet.
 
 ```bash
-python Ollama/ollama_Abschnitt3.py
-python Ollama/ollama_Abschnitt11.py
-python Ollama/ollama_Abschnitt12.py
+python Ollama/ollama_Abschnitt3.py  Abschnitt3.json
+python Ollama/ollama_Abschnitt11.py  Abschnitt11.json
+python Ollama/ollama_Abschnitt12.py  Abschnitt12.json
 ```
 Die Skripte sind jeweils für die angegebenen Abschnitte gedacht. Hierbei müssen jeweils der Bilderordner und der Prompt aus textextract angegeben werden.
 
