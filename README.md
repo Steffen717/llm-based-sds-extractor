@@ -2,6 +2,13 @@
 
 Ein **LLM-unterstütztes Extraktionswerkzeug**, das Sicherheitsdatenblätter (SDS) im PDF-Format verarbeitet, spezifische Abschnitte extrahiert und die Daten in strukturierte JSON-Dateien umwandelt. Es nutzt **OpenAI API** zur Extraktion von Informationen aus den Abschnitten 3, 11 und 12 eines Sicherheitsdatenblatts.
 
+## Repository klonen
+
+Um das Projekt auf deinen Rechner zu holen, kannst du das Repository mit folgendem Befehl klonen:
+
+```bash
+git clone https://github.com/Steffen717/llm-based-sds-extractor.git
+```
 ## Funktionen
 
 - **PDF-Extraktion**: Extrahiert die Abschnitte 3 (Angaben zu Bestandteilen), 11 (Toxikologische Angaben) und 12 (Umweltbezogene Angaben) aus SDS-PDF-Dateien.
